@@ -14,6 +14,7 @@
 - Scaffolded Astro 7 (`output: 'static'`) on `cursor/astro-scaffold-4bd0`: YAML content collections, BaseLayout + paper typography tokens, name-only index. Homepage sections are the next stacked PR. Did not merge, enable Pages, or add a domain.
 
 - Homepage sections on `cursor/homepage-sections-4bd0` (stacked on the scaffold branch): Hero → Selected work → Experience → Education → About → Connect, all from YAML. One Tesla role; $1M+ labeled as associated delivery value; no Hillsdale, GPA, phone, email, or résumé.
+- Recorded standing model policy as D14 (Jacob asked for D10; that id was already taken on the open PRs).
 
 ## Next
 - Leave Hillsdale off v1 until redacted copy is approved.

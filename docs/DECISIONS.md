@@ -41,3 +41,11 @@ Typography-led paper page: Source Serif 4 for the name and titles, IBM Plex Sans
 
 ## D13. Homepage sections (2026-11-06)
 Single page reads YAML collections. Order: Hero → Selected work → Experience → Education → About → Connect. Tesla is one role (Sales and Delivery Advisor). $1M+ copy keeps the parenthetical that it is associated delivery value, not personal revenue. No Hillsdale card, no GPA, no contact except LinkedIn and GitHub. Hero proof is the BRIEF positioning split into three short sentences; About uses the BRIEF About paragraph unchanged. External links use `rel="noreferrer"` and stay https-only.
+
+## D14. Standing model policy (2026-11-06)
+Jacob asked for this as D10. D10–D13 were already committed on the open scaffold and homepage PRs, so this uses the next free id and does not renumber those entries.
+
+- Project coordinator stays grok-4.7, reasoning effort medium, fast false.
+- Never enable fast (`fast=true`). Jacob said it uses more tokens.
+- Coding workers use grok-4.6, effort medium, fast false. Model slug `cursor-grok-4.6-medium` only. No high, xhigh, or `-fast` slugs. Never Claude, GPT, or another provider.
+- This scaffold/homepage thread was already running at grok-4.6 high before the policy; later threads follow D14.
