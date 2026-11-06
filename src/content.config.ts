@@ -35,6 +35,7 @@ const site = defineCollection({
 		documentTitle: z.string(),
 		description: z.string(),
 		heroLine: z.string(),
+		whoLine: z.string(),
 		proof: z.string(),
 		about: z.string(),
 		primaryCta: profileLink,

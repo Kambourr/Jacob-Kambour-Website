@@ -8,7 +8,7 @@
 Jacob Kambour — MS Finance and Analytics at Santa Clara University (Leavey), focused on FP&A and financial analysis, with a live public Tesla FP&A agent and experience in Tesla sales and delivery plus a Financial Analyst internship at Blendid.
 
 ## Must include (v1)
-- Name and one clear work line on the first screen (do not also dump school and every role there)
+- Name, domain line (FP&A and Financial Analysis), and one who-line on the first screen: MS Finance and Analytics, Santa Clara · Sales and Delivery Advisor at Tesla (not a full role dump; $1M+ stays in Experience)
 - First laptop viewport: identity, a real screenshot of the Tesla FP&A agent, a short what-it-does, a live-dashboard CTA, and findable LinkedIn plus Grok Bot contact
 - Primary CTA to the live Tesla FP&A agent: https://kambourr.github.io/tesla-fpa-agent/ (do not rebuild that dashboard here)
 - Profile link: GitHub https://github.com/Kambourr (not a contact method)
@@ -28,7 +28,8 @@ Jacob Kambour — MS Finance and Analytics at Santa Clara University (Leavey), f
 - Invented accomplishments
 
 ## Approved public wording (do not invent beyond this)
-**Hero line (working):** FP&A and Financial Analysis
+**Hero line (working):** FP&A and Financial Analysis  
+**Who line (under the name):** MS Finance and Analytics, Santa Clara · Sales and Delivery Advisor at Tesla
 
 **Tesla FP&A card:** A public Tesla FP&A agent that reads Tesla’s public filings, forecasts the quarter, explains the variance, and writes the analyst memo, with every figure checked by code. Live dashboard at the URL above.
 

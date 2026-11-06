@@ -9,7 +9,7 @@
 	--font-display: var(--font-serif), "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
 	--font-text: var(--font-sans), "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
 	--page-pad: clamp(1rem, 2.4vw, 1.75rem);
-	--mast-h: 4.35rem;
+	--mast-h: 5.6rem;
 	--leading: 1.5;
 }
 
@@ -71,9 +71,9 @@ svg {
 	flex-wrap: wrap;
 	align-items: baseline;
 	justify-content: space-between;
-	gap: 0.55rem 1.25rem;
+	gap: 0.35rem 1.25rem;
 	min-height: var(--mast-h);
-	padding: 0.85rem var(--page-pad) 0.7rem;
+	padding: 0.55rem var(--page-pad) 0.5rem;
 	border-bottom: 1px solid var(--line);
 }
 
@@ -85,17 +85,26 @@ svg {
 .name {
 	margin: 0;
 	font-family: var(--font-display);
-	font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+	font-size: clamp(1.35rem, 2.2vw, 1.7rem);
 	font-weight: 600;
 	letter-spacing: -0.02em;
-	line-height: 1.15;
+	line-height: 1.12;
 	overflow-wrap: anywhere;
 }
 
 .hero-line {
-	margin: 0.2rem 0 0;
+	margin: 0.12rem 0 0;
 	color: var(--ink-soft);
-	font-size: 0.95rem;
+	font-size: 0.9rem;
+	overflow-wrap: break-word;
+}
+
+.who-line {
+	margin: 0.08rem 0 0;
+	max-width: 38rem;
+	color: var(--ink);
+	font-size: 0.92rem;
+	line-height: 1.35;
 	overflow-wrap: break-word;
 }
 
@@ -147,8 +156,8 @@ button:focus-visible {
 
 .stage {
 	display: grid;
-	gap: 1.1rem;
-	padding: 1rem var(--page-pad) 1.25rem;
+	gap: 0.9rem;
+	padding: 0.75rem var(--page-pad) 0.9rem;
 	min-width: 0;
 }
 
@@ -157,8 +166,8 @@ button:focus-visible {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	gap: 0.75rem;
-	padding-top: 0.35rem;
+	gap: 0.55rem;
+	padding-top: 0.15rem;
 }
 
 .kicker {
@@ -223,10 +232,10 @@ button:focus-visible {
 }
 
 .feature-visual figcaption {
-	padding: 0.45rem 0.7rem 0.55rem;
+	padding: 0.32rem 0.65rem 0.4rem;
 	border-top: 1px solid var(--line);
 	color: var(--ink-soft);
-	font-size: 0.8rem;
+	font-size: 0.75rem;
 }
 
 .background {
@@ -309,8 +318,8 @@ button:focus-visible {
 		grid-template-columns: minmax(16.5rem, 22.5rem) minmax(0, 1fr);
 		align-items: stretch;
 		min-height: calc(100svh - var(--mast-h));
-		padding-top: 1.1rem;
-		padding-bottom: 1.1rem;
+		padding-top: 0.7rem;
+		padding-bottom: 0.7rem;
 	}
 
 	.feature-visual {

@@ -57,3 +57,6 @@ Connect is LinkedIn and that mailto only. GitHub stays a hero/profile link and i
 
 ## D16. First-viewport editorial hub (2026-11-06)
 Jacob rejected the beige single-column resume. The hub is an editorial/product page: masthead identity plus contact, then a wide featured-work stage (real live-dashboard screenshot, short what-it-does, one live CTA). Experience, Education, and About sit in accessible tabs below the first laptop view. Hero no longer lists school and every role. About no longer repeats the project and jobs. Do not emphasize the $1M+ delivery-value line on the first screen. One real project only; thumbnail is a capture of the live Tesla FP&A Agent, not generated art. No official Tesla branding beyond that project’s own UI.
+
+## D17. Masthead who-line (2026-11-06)
+D16 stripped school and role from the first screen; Jacob then said a recruiter still needs who he is. One concise line under the name, existing facts only: “MS Finance and Analytics, Santa Clara · Sales and Delivery Advisor at Tesla”. Domain line “FP&A and Financial Analysis” stays. Do not pull Experience bullets or the $1M+ line into the masthead. This line must remain in the 1280×800 and 1366×768 first view with the project visual, live CTA, and LinkedIn/email.

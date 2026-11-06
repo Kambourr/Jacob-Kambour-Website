@@ -7,11 +7,12 @@ interface Link {
 interface Props {
 	name: string;
 	heroLine: string;
+	whoLine: string;
 	contact: Link[];
 	profileLinks: Link[];
 }
 
-const { name, heroLine, contact, profileLinks } = Astro.props;
+const { name, heroLine, whoLine, contact, profileLinks } = Astro.props;
 const github = profileLinks.find((link) => /github\.com/i.test(link.href));
 ---
 
@@ -19,6 +20,7 @@ const github = profileLinks.find((link) => /github\.com/i.test(link.href));
 	<div class="identity">
 		<h1 class="name">{name}</h1>
 		<p class="hero-line">{heroLine}</p>
+		<p class="who-line">{whoLine}</p>
 	</div>
 	<div class="mast-links">
 		<ul aria-label="Contact">
