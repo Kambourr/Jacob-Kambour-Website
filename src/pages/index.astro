@@ -1,13 +1,35 @@
 ---
-import { getEntry } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
+import About from '../components/About.astro';
+import Connect from '../components/Connect.astro';
+import Education from '../components/Education.astro';
+import Experience from '../components/Experience.astro';
+import Hero from '../components/Hero.astro';
+import SelectedWork from '../components/SelectedWork.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const site = await getEntry('site', 'home');
 if (!site) {
 	throw new Error('Missing src/content/site.yaml entry "home".');
 }
+
+const byOrder = <T extends { data: { order: number } }>(a: T, b: T) => a.data.order - b.data.order;
+const work = (await getCollection('work')).toSorted(byOrder);
+const experience = (await getCollection('experience')).toSorted(byOrder);
+const education = (await getCollection('education')).toSorted(byOrder);
 ---
 
 <BaseLayout title={site.data.documentTitle} description={site.data.description}>
-	<h1 class="name">{site.data.name}</h1>
+	<Hero
+		name={site.data.name}
+		heroLine={site.data.heroLine}
+		proof={site.data.proof}
+		primaryCta={site.data.primaryCta}
+		links={site.data.links}
+	/>
+	<SelectedWork items={work} />
+	<Experience roles={experience} />
+	<Education degrees={education} />
+	<About about={site.data.about} />
+	<Connect links={site.data.links} />
 </BaseLayout>
