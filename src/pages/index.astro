@@ -1,11 +1,8 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
-import About from '../components/About.astro';
-import Connect from '../components/Connect.astro';
-import Education from '../components/Education.astro';
-import Experience from '../components/Experience.astro';
-import Hero from '../components/Hero.astro';
-import SelectedWork from '../components/SelectedWork.astro';
+import BackgroundTabs from '../components/BackgroundTabs.astro';
+import FeaturedWork from '../components/FeaturedWork.astro';
+import Masthead from '../components/Masthead.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const site = await getEntry('site', 'home');
@@ -15,21 +12,24 @@ if (!site) {
 
 const byOrder = <T extends { data: { order: number } }>(a: T, b: T) => a.data.order - b.data.order;
 const work = (await getCollection('work')).toSorted(byOrder);
+const featured = work[0];
+if (!featured) {
+	throw new Error('Missing featured work in src/content/work.yaml.');
+}
 const experience = (await getCollection('experience')).toSorted(byOrder);
 const education = (await getCollection('education')).toSorted(byOrder);
 ---
 
 <BaseLayout title={site.data.documentTitle} description={site.data.description}>
-	<Hero
+	<Masthead
 		name={site.data.name}
 		heroLine={site.data.heroLine}
-		proof={site.data.proof}
-		primaryCta={site.data.primaryCta}
-		links={site.data.profileLinks}
+		whoLine={site.data.whoLine}
+		contact={site.data.contact}
+		profileLinks={site.data.profileLinks}
 	/>
-	<SelectedWork items={work} />
-	<Experience roles={experience} />
-	<Education degrees={education} />
-	<About about={site.data.about} />
-	<Connect links={site.data.contact} />
+	<main id="main">
+		<FeaturedWork item={featured} />
+		<BackgroundTabs roles={experience} degrees={education} about={site.data.about} />
+	</main>
 </BaseLayout>

@@ -2,21 +2,21 @@ import { defineCollection } from 'astro:content';
 import { file } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-/** The only mailto allowed in v1. Not a personal Gmail. */
-const grokbotMailto = 'mailto:jkambour@mail.grokbot.com';
+/** The only mailto allowed on this hub. Jacob authorized this Gmail here only. */
+const hubMailto = 'mailto:jkambour@gmail.com';
 
 /**
  * Public URL rules for v1:
  * - https for work, profile, and LinkedIn
- * - mailto only for the approved Grok Bot inbox
+ * - mailto only for jkambour@gmail.com (not grokbot, not other inboxes)
  * - no Hillsdale study URL (404 and private operational numbers)
- * - no other email, phone, or tel:
+ * - no phone or tel:
  */
 const httpsHref = z.url({ protocol: /^https$/ }).refine((href) => !href.includes('hillsdale-study'), {
 	message: 'v1 links must not point at the Hillsdale study URL',
 });
 
-const contactHref = z.union([httpsHref, z.literal(grokbotMailto)]);
+const contactHref = z.union([httpsHref, z.literal(hubMailto)]);
 
 const profileLink = z.object({
 	label: z.string(),
@@ -35,6 +35,7 @@ const site = defineCollection({
 		documentTitle: z.string(),
 		description: z.string(),
 		heroLine: z.string(),
+		whoLine: z.string(),
 		proof: z.string(),
 		about: z.string(),
 		primaryCta: profileLink,
@@ -50,6 +51,8 @@ const work = defineCollection({
 		summary: z.string(),
 		href: httpsHref,
 		hrefLabel: z.string(),
+		image: z.string(),
+		imageAlt: z.string(),
 		order: z.number(),
 	}),
 });

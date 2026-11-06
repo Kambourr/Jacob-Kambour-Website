@@ -8,4 +8,9 @@
     figure checked by code.
   href: https://kambourr.github.io/tesla-fpa-agent/
   hrefLabel: Open live dashboard
+  image: tesla-fpa-agent.png
+  imageAlt: >-
+    Screenshot of the live Tesla FP&A Agent overview for Q3 2026, showing the
+    public-filings revenue figures and a revenue bridge chart. Not rebuilt here;
+    this is a capture of the live dashboard.
   order: 1
