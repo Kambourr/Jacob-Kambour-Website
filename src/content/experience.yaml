@@ -1,0 +1,20 @@
+# Compressed experience. Tesla is one role, not two titles.
+# $1M+ is associated vehicle delivery value, not personal revenue.
+- id: tesla
+  org: Tesla
+  title: Sales and Delivery Advisor
+  bullets:
+    - Support vehicle sales, delivery operations, and logistics.
+    - Process deliveries involving trade-ins, customer financing, and related requirements.
+    - Supported $1M+ in vehicle value during quarter-end operations (this is associated delivery value, not personal revenue).
+    - Apply internal AI tools to operational problems.
+  order: 1
+- id: blendid
+  org: Blendid
+  title: Financial Analyst Intern
+  dates: Jun–Aug 2024
+  bullets:
+    - Supported operations for autonomous smoothie robots.
+    - Analyzed operational data in Excel.
+    - Worked with financial and accounting information used in management discussions.
+  order: 2

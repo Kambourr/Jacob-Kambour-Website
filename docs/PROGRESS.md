@@ -11,7 +11,10 @@
 
 - Jacob asked to use a Cursor Project as manager with grok-4.6 worker threads for the build (not a local-only scaffold). Creating GitHub repo `Kambourr/personal-site` so those agents have a remote, while keeping the Desktop folder.
 
+- Scaffolded Astro 7 (`output: 'static'`) on `cursor/astro-scaffold-4bd0`: YAML content collections, BaseLayout + paper typography tokens, name-only index. Homepage sections are the next stacked PR. Did not merge, enable Pages, or add a domain.
+
 ## Next
-- Scaffold the Astro static homepage in the Desktop repo (Hero + FP&A card first, then Experience / Education / About / Connect).
-- Visual pass so it does not look like a generic AI landing page.
+- Stacked PR: homepage sections in order Hero → Selected work → Experience → Education → About → Connect, reading `src/content/*.yaml`.
+- Visual pass on those sections so it does not look like a generic AI landing page.
 - Leave Hillsdale off v1 until redacted copy is approved.
+- Do not merge or enable GitHub Pages until Jacob asks.

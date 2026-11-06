@@ -1,6 +1,6 @@
 # BRIEF — Jacob Kambour personal site
 
-**Status:** v1 planned (2026-11-06). Local repo only: `/Users/admin/Desktop/personal-site`. No GitHub remote yet.
+**Status:** v1 in progress (2026-11-06). GitHub repo `Kambourr/personal-site` (private). Local Desktop folder remains the checkout. Do not merge PRs or enable Pages until Jacob asks.
 **Audience:** FP&A / finance analyst / internship recruiters (tech-company leaning).
 **Goal:** A short personal hub that makes Jacob’s value obvious in about 30 seconds, then links out to live work. This is not a rehost of every project and not a full online résumé.
 

@@ -1,0 +1,13 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const site = await getEntry('site', 'home');
+if (!site) {
+	throw new Error('Missing src/content/site.yaml entry "home".');
+}
+---
+
+<BaseLayout title={site.data.documentTitle} description={site.data.description}>
+	<h1 class="name">{site.data.name}</h1>
+</BaseLayout>

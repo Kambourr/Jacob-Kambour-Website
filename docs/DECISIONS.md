@@ -29,3 +29,12 @@ Stop new coding if weekly usage approaches 50%. Keep docs current so work can re
 
 ## D9. Cursor Project for the build (2026-11-06)
 Jacob asked to use Cursor cloud agents for building: one Project coordinator and worker threads, all on grok-4.6 (no Claude/GPT). The Desktop folder remains the local checkout. A GitHub repo is required for those agents; planning docs are the starting commit. Do not merge PRs or enable public Pages without Jacob's approval.
+
+## D10. Brief vs current workflow (2026-11-06)
+`docs/BRIEF.md` still opens as a local-only Desktop repo with no GitHub remote, and an earlier note said not to use Cursor cloud agents. D9 and Jacob’s later Project request supersede that workflow. Privacy, IA, copy limits, and “no Pages until Jacob asks” from the brief still win. This session builds on GitHub via stacked PRs and does not merge or enable Pages.
+
+## D11. Astro 7 static scaffold (2026-11-06)
+Astro 7 with `output: 'static'`. No adapter. `site` and `base` are unset until GitHub Pages is approved (a project site would need `base: '/personal-site'`). `public/.nojekyll` is included so a later Pages deploy can serve `/_astro`. Content is YAML collections (`src/content/*.yaml` + `src/content.config.ts`) so copy can change without a redesign. Schema has no GPA, email, phone, or address fields. Public hrefs must be `https` and must not include the Hillsdale study URL.
+
+## D12. Visual system (2026-11-06)
+Typography-led paper page: Source Serif 4 for the name and titles, IBM Plex Sans for body, warm paper background (`#f3efe6`), ink text, one slate-blue accent (`#243d56`). Fonts are bundled at build via Astro `fontProviders.google()` (self-hosted in the output, not a runtime Google request). Light-only (`color-scheme: light`). No gradients, no Tesla red, no Tesla wordmark/logo, no stock photos. Homepage section components are a follow-on PR; this scaffold ships the layout shell and a name-only index.

@@ -1,0 +1,11 @@
+# Selected work. One live card in v1. Do not add a Hillsdale card.
+# Do not rebuild the FP&A dashboard here; link out only.
+- id: tesla-fpa-agent
+  title: Tesla FP&A Agent
+  summary: >-
+    A public Tesla FP&A agent that reads Tesla’s public filings, forecasts the
+    quarter, explains the variance, and writes the analyst memo, with every
+    figure checked by code.
+  href: https://kambourr.github.io/tesla-fpa-agent/
+  hrefLabel: Open live dashboard
+  order: 1
