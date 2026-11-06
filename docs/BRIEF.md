@@ -2,20 +2,21 @@
 
 **Status:** v1 in progress (2026-11-06). GitHub repo `Kambourr/personal-site` (private). Local Desktop folder remains the checkout. Do not merge PRs or enable Pages until Jacob asks.
 **Audience:** FP&A / finance analyst / internship recruiters (tech-company leaning).
-**Goal:** A short personal hub that makes Jacob’s value obvious in about 30 seconds, then links out to live work. This is not a rehost of every project and not a full online résumé.
+**Goal:** A short personal hub that makes Jacob’s value and one live project obvious in the first laptop viewport, then links out. This is not a rehost of every project and not a full online résumé.
 
 ## Positioning
 Jacob Kambour — MS Finance and Analytics at Santa Clara University (Leavey), focused on FP&A and financial analysis, with a live public Tesla FP&A agent and experience in Tesla sales and delivery plus a Financial Analyst internship at Blendid.
 
 ## Must include (v1)
-- Name and one clear work line on the first screen
-- Primary CTA to the live Tesla FP&A agent: https://kambourr.github.io/tesla-fpa-agent/
-- Secondary profile links: LinkedIn https://www.linkedin.com/in/jacob-kambour-5558a2221/ and GitHub https://github.com/Kambourr (GitHub is a work/profile link, not a contact method)
-- Selected-work card for the Tesla FP&A agent (do not rebuild that dashboard here)
+- Name and one clear work line on the first screen (do not also dump school and every role there)
+- First laptop viewport: identity, a real screenshot of the Tesla FP&A agent, a short what-it-does, a live-dashboard CTA, and findable LinkedIn plus Grok Bot contact
+- Primary CTA to the live Tesla FP&A agent: https://kambourr.github.io/tesla-fpa-agent/ (do not rebuild that dashboard here)
+- Profile link: GitHub https://github.com/Kambourr (not a contact method)
+- Experience / Education / About in accessible tabs below the first view, not a six-section resume column
 - Compressed experience: Tesla (Sales and Delivery Advisor; same role as internal Customer Experience Specialist Seasonal — do not list as two jobs) and Blendid Financial Analyst Intern
 - Education: MS Finance and Analytics, Santa Clara University Leavey (Sep 2025–Jun 2027); BS Commerce, Finance, Santa Clara University
-- Short About (a few sentences)
-- Connect section with LinkedIn and the Grok Bot inbox mailto:jkambour@mail.grokbot.com only (not a personal Gmail)
+- Short About that does not repeat the first-screen project pitch
+- Contact: LinkedIn https://www.linkedin.com/in/jacob-kambour-5558a2221/ and mailto:jkambour@mail.grokbot.com only (not a personal Gmail)
 
 ## Must not include
 - Street address, phone, or personal email (Gmail or any address other than jkambour@mail.grokbot.com)
@@ -27,7 +28,7 @@ Jacob Kambour — MS Finance and Analytics at Santa Clara University (Leavey), f
 - Invented accomplishments
 
 ## Approved public wording (do not invent beyond this)
-**Hero line (working):** FP&A and Financial Analysis · MS Finance and Analytics, Santa Clara · Sales and Delivery Advisor at Tesla
+**Hero line (working):** FP&A and Financial Analysis
 
 **Tesla FP&A card:** A public Tesla FP&A agent that reads Tesla’s public filings, forecasts the quarter, explains the variance, and writes the analyst memo, with every figure checked by code. Live dashboard at the URL above.
 
@@ -35,12 +36,13 @@ Jacob Kambour — MS Finance and Analytics at Santa Clara University (Leavey), f
 
 **Blendid:** Financial Analyst Intern, Jun–Aug 2024. Supported operations for autonomous smoothie robots; analyzed operational data in Excel; worked with financial and accounting information used in management discussions.
 
-**About (working):** MS Finance and Analytics student at Santa Clara focused on FP&A, valuation, forecasting, and how finance, technology, and operations fit together. Built a public Tesla FP&A agent (linked above). Works at Tesla in sales and delivery. Previously a Financial Analyst Intern at Blendid.
+**About (working):** MS Finance and Analytics student at Santa Clara focused on FP&A, valuation, forecasting, and how finance, technology, and operations fit together. (Roles and the live agent live in Experience and Featured work — do not repeat them here.)
 
 ## Definition of done for v1
-- Thin homepage with the section order in DECISIONS.md
-- Looks considered (typography-led, not a generic AI/Framer landing page)
-- Works on mobile
+- First laptop view shows identity, featured-project visual, what-it-does, live CTA, and contact without scrolling
+- Experience, Education, and About do not bloat that first view
+- Looks considered (editorial/product, not a generic AI/Framer landing page or beige resume column)
+- Mobile text wraps with no horizontal overflow
 - No private contact info or Hillsdale numbers
 - `docs/BRIEF.md`, `docs/PROGRESS.md`, and `docs/DECISIONS.md` kept current after each session
 - GitHub upload and Pages deploy are out of scope until Jacob asks

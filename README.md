@@ -24,7 +24,7 @@ Requires Node 22+.
 
 Homepage text lives in YAML, not in the layout:
 
-- `src/content/site.yaml` — name, hero, about, profile links, Connect contacts
+- `src/content/site.yaml` — name, hero line, about, profile links, contact
 - `src/content/work.yaml` — selected work
 - `src/content/experience.yaml` — roles
 - `src/content/education.yaml` — degrees

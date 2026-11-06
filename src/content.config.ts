@@ -50,6 +50,8 @@ const work = defineCollection({
 		summary: z.string(),
 		href: httpsHref,
 		hrefLabel: z.string(),
+		image: z.string(),
+		imageAlt: z.string(),
 		order: z.number(),
 	}),
 });

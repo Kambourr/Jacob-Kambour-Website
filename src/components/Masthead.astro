@@ -1,0 +1,45 @@
+---
+interface Link {
+	label: string;
+	href: string;
+}
+
+interface Props {
+	name: string;
+	heroLine: string;
+	contact: Link[];
+	profileLinks: Link[];
+}
+
+const { name, heroLine, contact, profileLinks } = Astro.props;
+const github = profileLinks.find((link) => /github\.com/i.test(link.href));
+---
+
+<header class="masthead">
+	<div class="identity">
+		<h1 class="name">{name}</h1>
+		<p class="hero-line">{heroLine}</p>
+	</div>
+	<div class="mast-links">
+		<ul aria-label="Contact">
+			{
+				contact.map((link) => (
+					<li>
+						<a href={link.href} rel="noreferrer">
+							{link.label}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+		{
+			github && (
+				<p class="profile-link">
+					<a href={github.href} rel="noreferrer">
+						{github.label}
+					</a>
+				</p>
+			)
+		}
+	</div>
+</header>

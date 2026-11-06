@@ -1,0 +1,29 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import dashboard from '../assets/tesla-fpa-agent.png';
+
+interface Props {
+	item: CollectionEntry<'work'>;
+}
+
+const { item } = Astro.props;
+---
+
+<section class="stage" id="work" aria-labelledby="work-title">
+	<div class="feature-copy">
+		<p class="kicker">Featured work</p>
+		<h2 class="work-title" id="work-title">{item.data.title}</h2>
+		<p class="what">{item.data.summary}</p>
+		<a class="button" href={item.data.href} rel="noreferrer">{item.data.hrefLabel}</a>
+	</div>
+	<figure class="feature-visual">
+		<Image
+			src={dashboard}
+			alt={item.data.imageAlt}
+			widths={[720, 1080, 1440]}
+			sizes="(max-width: 63.99rem) calc(100vw - 2rem), min(70vw, 58rem)"
+		/>
+		<figcaption>Live dashboard screenshot from public Tesla filings.</figcaption>
+	</figure>
+</section>

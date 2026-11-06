@@ -17,7 +17,7 @@ const { title, description } = Astro.props;
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
 		<meta name="color-scheme" content="light" />
-		<meta name="theme-color" content="#f3efe6" />
+		<meta name="theme-color" content="#f6f5f1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<title>{title}</title>
@@ -25,11 +25,8 @@ const { title, description } = Astro.props;
 		<Font cssVariable="--font-sans" preload />
 	</head>
 	<body>
-		<a class="skip" href="#main">Skip to content</a>
-		<div class="page">
-			<main id="main">
-				<slot />
-			</main>
-		</div>
+		<a class="skip" href="#work">Skip to featured work</a>
+		<a class="skip" href="#background">Skip to background</a>
+		<slot />
 	</body>
 </html>

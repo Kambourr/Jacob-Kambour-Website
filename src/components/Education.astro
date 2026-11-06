@@ -8,15 +8,12 @@ interface Props {
 const { degrees } = Astro.props;
 ---
 
-<section class="section" id="education" aria-labelledby="education-heading">
-	<h2 class="section-title" id="education-heading">Education</h2>
-	{
-		degrees.map((degree) => (
-			<article class="degree">
-				<h3 class="credential">{degree.data.credential}</h3>
-				<p>{degree.data.school}</p>
-				{degree.data.dates && <p class="meta">{degree.data.dates}</p>}
-			</article>
-		))
-	}
-</section>
+{
+	degrees.map((degree) => (
+		<article class="degree">
+			<h2 class="credential">{degree.data.credential}</h2>
+			<p>{degree.data.school}</p>
+			{degree.data.dates && <p class="meta">{degree.data.dates}</p>}
+		</article>
+	))
+}
