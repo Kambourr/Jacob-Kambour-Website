@@ -15,6 +15,7 @@
 
 - Homepage sections on `cursor/homepage-sections-4bd0` (stacked on the scaffold branch): Hero → Selected work → Experience → Education → About → Connect, all from YAML. One Tesla role; $1M+ labeled as associated delivery value; no Hillsdale, GPA, phone, email, or résumé.
 - Recorded standing model policy as D14 (Jacob asked for D10; that id was already taken on the open PRs).
+- Approved public contact besides LinkedIn is the Grok Bot inbox `jkambour@mail.grokbot.com` (D15). GitHub stays a profile link, not a contact method.
 
 ## Next
 - Leave Hillsdale off v1 until redacted copy is approved.

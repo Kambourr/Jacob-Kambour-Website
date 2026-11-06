@@ -25,11 +25,11 @@ const education = (await getCollection('education')).toSorted(byOrder);
 		heroLine={site.data.heroLine}
 		proof={site.data.proof}
 		primaryCta={site.data.primaryCta}
-		links={site.data.links}
+		links={site.data.profileLinks}
 	/>
 	<SelectedWork items={work} />
 	<Experience roles={experience} />
 	<Education degrees={education} />
 	<About about={site.data.about} />
-	<Connect links={site.data.links} />
+	<Connect links={site.data.contact} />
 </BaseLayout>

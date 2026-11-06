@@ -24,9 +24,9 @@ Requires Node 22+.
 
 Homepage text lives in YAML, not in the layout:
 
-- `src/content/site.yaml` — name, hero, about, LinkedIn / GitHub
+- `src/content/site.yaml` — name, hero, about, profile links, Connect contacts
 - `src/content/work.yaml` — selected work
 - `src/content/experience.yaml` — roles
 - `src/content/education.yaml` — degrees
 
-Do **not** add street address, phone, personal email, a résumé file, GPA, Tesla Hillsdale operational numbers, or a link to `kambourr.github.io/hillsdale-study`.
+Do **not** add street address, phone, personal Gmail, a résumé file, GPA, Tesla Hillsdale operational numbers, or a link to `kambourr.github.io/hillsdale-study`. The only public email is `jkambour@mail.grokbot.com`.
