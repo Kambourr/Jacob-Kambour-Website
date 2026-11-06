@@ -2,18 +2,30 @@ import { defineCollection } from 'astro:content';
 import { file } from 'astro/loaders';
 import { z } from 'astro/zod';
 
+/** The only mailto allowed in v1. Not a personal Gmail. */
+const grokbotMailto = 'mailto:jkambour@mail.grokbot.com';
+
 /**
  * Public URL rules for v1:
- * - https only (blocks mailto: / tel: / personal email and phone)
+ * - https for work, profile, and LinkedIn
+ * - mailto only for the approved Grok Bot inbox
  * - no Hillsdale study URL (404 and private operational numbers)
+ * - no other email, phone, or tel:
  */
-const publicHref = z.url({ protocol: /^https$/ }).refine((href) => !href.includes('hillsdale-study'), {
+const httpsHref = z.url({ protocol: /^https$/ }).refine((href) => !href.includes('hillsdale-study'), {
 	message: 'v1 links must not point at the Hillsdale study URL',
 });
 
-const link = z.object({
+const contactHref = z.union([httpsHref, z.literal(grokbotMailto)]);
+
+const profileLink = z.object({
 	label: z.string(),
-	href: publicHref,
+	href: httpsHref,
+});
+
+const contactLink = z.object({
+	label: z.string(),
+	href: contactHref,
 });
 
 const site = defineCollection({
@@ -25,8 +37,9 @@ const site = defineCollection({
 		heroLine: z.string(),
 		proof: z.string(),
 		about: z.string(),
-		primaryCta: link,
-		links: z.array(link),
+		primaryCta: profileLink,
+		profileLinks: z.array(profileLink),
+		contact: z.array(contactLink),
 	}),
 });
 
@@ -35,7 +48,7 @@ const work = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		summary: z.string(),
-		href: publicHref,
+		href: httpsHref,
 		hrefLabel: z.string(),
 		order: z.number(),
 	}),

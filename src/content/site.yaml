@@ -1,5 +1,6 @@
 # Homepage identity and copy. Edit here; layout lives in src/.
-# Do not add street address, phone, personal email, GPA, or a résumé file.
+# Do not add street address, phone, personal Gmail, GPA, or a résumé file.
+# The only public email is the Grok Bot inbox below.
 home:
   name: Jacob Kambour
   documentTitle: Jacob Kambour — FP&A and Financial Analysis
@@ -21,9 +22,15 @@ home:
   primaryCta:
     label: Tesla FP&A agent
     href: https://kambourr.github.io/tesla-fpa-agent/
-  # Connect and hero secondary links. LinkedIn and GitHub only in v1.
-  links:
+  # Hero / profile: LinkedIn and GitHub. GitHub is not a contact method.
+  profileLinks:
     - label: LinkedIn
       href: https://www.linkedin.com/in/jacob-kambour-5558a2221/
     - label: GitHub
       href: https://github.com/Kambourr
+  # Connect: LinkedIn and Grok Bot inbox only.
+  contact:
+    - label: LinkedIn
+      href: https://www.linkedin.com/in/jacob-kambour-5558a2221/
+    - label: jkambour@mail.grokbot.com
+      href: mailto:jkambour@mail.grokbot.com

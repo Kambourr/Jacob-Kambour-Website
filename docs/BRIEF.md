@@ -10,15 +10,15 @@ Jacob Kambour — MS Finance and Analytics at Santa Clara University (Leavey), f
 ## Must include (v1)
 - Name and one clear work line on the first screen
 - Primary CTA to the live Tesla FP&A agent: https://kambourr.github.io/tesla-fpa-agent/
-- Secondary links: LinkedIn https://www.linkedin.com/in/jacob-kambour-5558a2221/ and GitHub https://github.com/Kambourr
+- Secondary profile links: LinkedIn https://www.linkedin.com/in/jacob-kambour-5558a2221/ and GitHub https://github.com/Kambourr (GitHub is a work/profile link, not a contact method)
 - Selected-work card for the Tesla FP&A agent (do not rebuild that dashboard here)
 - Compressed experience: Tesla (Sales and Delivery Advisor; same role as internal Customer Experience Specialist Seasonal — do not list as two jobs) and Blendid Financial Analyst Intern
 - Education: MS Finance and Analytics, Santa Clara University Leavey (Sep 2025–Jun 2027); BS Commerce, Finance, Santa Clara University
 - Short About (a few sentences)
-- Connect section with LinkedIn and GitHub only
+- Connect section with LinkedIn and the Grok Bot inbox mailto:jkambour@mail.grokbot.com only (not a personal Gmail)
 
 ## Must not include
-- Street address, phone, or personal email
+- Street address, phone, or personal email (Gmail or any address other than jkambour@mail.grokbot.com)
 - Unredacted résumé PDF or any résumé file
 - Tesla Hillsdale operational numbers (targets, weekly averages, drive counts, funnel figures, simulation probabilities, or similar). Jacob confirmed these are private (2026-11-06); a public-safe Hillsdale card comes later after redaction.
 - Fake metrics, testimonials, or generic “AI-powered” hero copy

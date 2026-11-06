@@ -49,3 +49,8 @@ Jacob asked for this as D10. D10–D13 were already committed on the open scaffo
 - Never enable fast (`fast=true`). Jacob said it uses more tokens.
 - Coding workers use grok-4.6, effort medium, fast false. Model slug `cursor-grok-4.6-medium` only. No high, xhigh, or `-fast` slugs. Never Claude, GPT, or another provider.
 - This scaffold/homepage thread was already running at grok-4.6 high before the policy; later threads follow D14.
+
+## D15. Approved public contact (2026-11-06)
+Jacob approved one public contact besides LinkedIn: the Grok Bot inbox `jkambour@mail.grokbot.com` (`mailto:jkambour@mail.grokbot.com`). This is not a personal Gmail. Do not invent another address.
+
+Connect is LinkedIn and that mailto only. GitHub stays a hero/profile link and is not a contact method. The content schema allows mailto solely for that exact address; other emails, `tel:`, street address, résumé files, GPA, and the Hillsdale study URL stay rejected. Privacy rules otherwise unchanged.
