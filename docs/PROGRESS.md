@@ -19,6 +19,7 @@
 - Redesign (D16) on `cursor/editorial-first-view-4bd0`: first laptop view is identity + real FP&A screenshot + live CTA + contact; Experience/Education/About in tabs. Not merged.
 - D17: masthead who-line “MS Finance and Analytics, Santa Clara · Sales and Delivery Advisor at Tesla” under the name; $1M+ stays in the Experience tab.
 - D18: public contact on this hub is `jkambour@gmail.com` (Jacob authorized it here only). Grok Bot inbox removed from schema and render. Tesla FP&A agent contact policy untouched.
+- Root `HANDOFF.md` added so another agent can continue from the folder (scripts, layout, privacy, PR stack, known tests). No layout or copy change.
 
 ## Next
 - Leave Hillsdale off v1 until redacted copy is approved.
