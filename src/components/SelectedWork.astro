@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	items: CollectionEntry<'work'>[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="section" id="work" aria-labelledby="work-heading">
+	<h2 class="section-title" id="work-heading">Selected work</h2>
+	{
+		items.map((item) => (
+			<article class="work-card">
+				<h3 class="work-title">{item.data.title}</h3>
+				<p>{item.data.summary}</p>
+				<p>
+					<a href={item.data.href} rel="noreferrer">
+						{item.data.hrefLabel}
+					</a>
+				</p>
+			</article>
+		))
+	}
+</section>

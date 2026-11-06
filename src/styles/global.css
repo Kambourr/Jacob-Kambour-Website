@@ -70,10 +70,23 @@ body {
 	line-height: 1.15;
 }
 
+.hero-line {
+	margin: 0.85rem 0 0;
+	max-width: 36rem;
+	color: var(--ink-soft);
+	font-size: 1.05rem;
+	line-height: 1.45;
+}
+
 .lede,
 .prose {
+	margin: 1.15rem 0 0;
 	color: var(--ink);
 	max-width: 38rem;
+}
+
+.prose {
+	margin-top: 0;
 }
 
 .muted,

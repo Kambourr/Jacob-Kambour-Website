@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	degrees: CollectionEntry<'education'>[];
+}
+
+const { degrees } = Astro.props;
+---
+
+<section class="section" id="education" aria-labelledby="education-heading">
+	<h2 class="section-title" id="education-heading">Education</h2>
+	{
+		degrees.map((degree) => (
+			<article class="degree">
+				<h3 class="credential">{degree.data.credential}</h3>
+				<p>{degree.data.school}</p>
+				{degree.data.dates && <p class="meta">{degree.data.dates}</p>}
+			</article>
+		))
+	}
+</section>

@@ -38,3 +38,6 @@ Astro 7 with `output: 'static'`. No adapter. `site` and `base` are unset until G
 
 ## D12. Visual system (2026-11-06)
 Typography-led paper page: Source Serif 4 for the name and titles, IBM Plex Sans for body, warm paper background (`#f3efe6`), ink text, one slate-blue accent (`#243d56`). Fonts are bundled at build via Astro `fontProviders.google()` (self-hosted in the output, not a runtime Google request). Light-only (`color-scheme: light`). No gradients, no Tesla red, no Tesla wordmark/logo, no stock photos. Homepage section components are a follow-on PR; this scaffold ships the layout shell and a name-only index.
+
+## D13. Homepage sections (2026-11-06)
+Single page reads YAML collections. Order: Hero → Selected work → Experience → Education → About → Connect. Tesla is one role (Sales and Delivery Advisor). $1M+ copy keeps the parenthetical that it is associated delivery value, not personal revenue. No Hillsdale card, no GPA, no contact except LinkedIn and GitHub. Hero proof is the BRIEF positioning split into three short sentences; About uses the BRIEF About paragraph unchanged. External links use `rel="noreferrer"` and stay https-only.
