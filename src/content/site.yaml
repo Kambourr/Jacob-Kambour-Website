@@ -1,6 +1,6 @@
 # Homepage identity and copy. Edit here; layout lives in src/.
-# Do not add street address, phone, personal Gmail, GPA, or a résumé file.
-# The only public email is the Grok Bot inbox below.
+# Do not add street address, phone, GPA, or a résumé file.
+# The only public email on this hub is jkambour@gmail.com.
 home:
   name: Jacob Kambour
   documentTitle: Jacob Kambour — FP&A and Financial Analysis
@@ -23,9 +23,9 @@ home:
   profileLinks:
     - label: GitHub
       href: https://github.com/Kambourr
-  # Contact: LinkedIn and Grok Bot inbox only.
+  # Contact: LinkedIn and personal Gmail only (this hub).
   contact:
     - label: LinkedIn
       href: https://www.linkedin.com/in/jacob-kambour-5558a2221/
-    - label: jkambour@mail.grokbot.com
-      href: mailto:jkambour@mail.grokbot.com
+    - label: jkambour@gmail.com
+      href: mailto:jkambour@gmail.com

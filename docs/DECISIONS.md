@@ -60,3 +60,6 @@ Jacob rejected the beige single-column resume. The hub is an editorial/product p
 
 ## D17. Masthead who-line (2026-11-06)
 D16 stripped school and role from the first screen; Jacob then said a recruiter still needs who he is. One concise line under the name, existing facts only: “MS Finance and Analytics, Santa Clara · Sales and Delivery Advisor at Tesla”. Domain line “FP&A and Financial Analysis” stays. Do not pull Experience bullets or the $1M+ line into the masthead. This line must remain in the 1280×800 and 1366×768 first view with the project visual, live CTA, and LinkedIn/email.
+
+## D18. Personal Gmail on this hub only (2026-11-06)
+Jacob explicitly authorized displaying `jkambour@gmail.com` as the public contact on this personal hub only. It replaces the D15 Grok Bot inbox (`jkambour@mail.grokbot.com`), which must not remain as an allowed or rendered contact here. Schema allows mailto solely for `mailto:jkambour@gmail.com`. LinkedIn stays the other contact method; GitHub stays a profile link. Still reject phone, street address, résumé files, GPA, other inboxes, and the Hillsdale study URL. Do not change the Tesla FP&A agent repo or its no-private-contact policy.

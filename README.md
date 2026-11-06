@@ -29,4 +29,4 @@ Homepage text lives in YAML, not in the layout:
 - `src/content/experience.yaml` — roles
 - `src/content/education.yaml` — degrees
 
-Do **not** add street address, phone, personal Gmail, a résumé file, GPA, Tesla Hillsdale operational numbers, or a link to `kambourr.github.io/hillsdale-study`. The only public email is `jkambour@mail.grokbot.com`.
+Do **not** add street address, phone, a résumé file, GPA, Tesla Hillsdale operational numbers, or a link to `kambourr.github.io/hillsdale-study`. The only public email on this hub is `jkambour@gmail.com`.
