@@ -1,0 +1,19 @@
+# Job bullets adapted from Jacob_Kambour_Resume.pdf (provided November 6, 2026).
+# Tesla remains one role under the previously approved public-facing title.
+# Private Tesla delivery volumes, dollar totals and study metrics are omitted.
+- id: tesla
+  org: Tesla
+  title: Sales and Delivery Advisor
+  bullets:
+    - Coordinated quarter-end vehicle deliveries, customer financing, trade-in paperwork, and delivery requirements; resolved financing discrepancies.
+    - Lead an ongoing customer-engagement study; built a data-collection app and an initial R/Jupyter analysis workflow to prepare findings for leadership.
+  order: 1
+- id: blendid
+  org: Blendid
+  title: Financial Analyst Intern
+  dates: Jun–Aug 2024
+  bullets:
+    - Presented location-level operating cost reports covering ingredient cost of sales and labor and service costs to the C-suite.
+    - Analyzed robot operating data in Excel and identified about three hours of daily service downtime, with estimated lost revenue of $50–200 per robot per day; worked with engineering to improve serviceability in the next-generation M2 design.
+    - Co-managed 11 robots across three states as part of a four-intern team, working cross-functionally with engineering.
+  order: 2

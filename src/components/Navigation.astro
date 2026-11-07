@@ -1,0 +1,36 @@
+---
+interface Props { current?: string }
+const { current } = Astro.props;
+const root = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+---
+<header class="site-nav">
+  <a class="wordmark" href={root} aria-label="Jacob Kambour — home">Jacob Kambour<span>FINANCE & ANALYTICS</span></a>
+  <button class="menu-toggle" type="button" aria-controls="site-menu" aria-expanded="false" hidden><span>Menu</span><span class="menu-icon" aria-hidden="true">＋</span></button>
+  <nav class="nav-links" id="site-menu" aria-label="Main navigation">
+    <a class="roll-link" href={`${root}#work`} aria-current={current === 'work' ? 'page' : undefined}><span>Projects</span><span aria-hidden="true">Projects</span></a>
+    <a class="roll-link" href={`${root}#background`}><span>Experience</span><span aria-hidden="true">Experience</span></a>
+    <a class="roll-link" href={`${root}#about`}><span>About</span><span aria-hidden="true">About</span></a>
+  </nav>
+  <a class="button button-light nav-contact" href="mailto:jkambour@gmail.com">Get in touch <span aria-hidden="true">↗</span></a>
+</header>
+<script>
+  const header = document.querySelector<HTMLElement>('.site-nav');
+  const toggle = header?.querySelector<HTMLButtonElement>('.menu-toggle');
+  const menu = header?.querySelector<HTMLElement>('#site-menu');
+  if (header && toggle && menu) {
+    const mobile = window.matchMedia('(max-width: 760px)');
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.querySelector('span')!.textContent = open ? 'Close' : 'Menu';
+      menu.hidden = mobile.matches && !open;
+      header.classList.toggle('menu-open', mobile.matches && open);
+    };
+    const sync = () => { toggle.hidden = !mobile.matches; setOpen(false); };
+    sync();
+    mobile.addEventListener('change', sync);
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+    menu.addEventListener('click', (event) => { if ((event.target as HTMLElement).closest('a')) setOpen(false); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') { setOpen(false); toggle.focus(); } });
+    document.addEventListener('click', (event) => { if (!header.contains(event.target as Node)) setOpen(false); });
+  }
+</script>

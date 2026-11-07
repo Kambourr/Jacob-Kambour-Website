@@ -1,5 +1,32 @@
-# personal-site
+# Jacob Kambour — personal site
 
-Jacob Kambour's personal website. This folder is the local git repo; GitHub will be added later.
+Short recruiter hub for FP&A / finance roles. Live Tesla FP&A work stays at [kambourr.github.io/tesla-fpa-agent](https://kambourr.github.io/tesla-fpa-agent/) and is linked from this site, not rebuilt here.
 
-See `docs/` for the project brief, progress, and decisions once those are written.
+Planning docs: `docs/BRIEF.md`, `docs/DECISIONS.md`, `docs/PROGRESS.md`, `docs/RESEARCH.md`.
+
+## Run locally
+
+```sh
+npm install
+npm run dev
+```
+
+| Command | Action |
+| --- | --- |
+| `npm run dev` | Local server |
+| `npm run build` | Static output in `dist/` |
+| `npm run preview` | Preview the production build |
+| `npm run check` | Typecheck |
+
+Requires Node 22+.
+
+## Edit copy
+
+Homepage text lives in YAML, not in the layout:
+
+- `src/content/site.yaml` — name, hero line, about, profile links, contact
+- `src/content/work.yaml` — selected work
+- `src/content/experience.yaml` — roles
+- `src/content/education.yaml` — degrees
+
+Do **not** add street address, phone, a résumé file, GPA, Tesla Hillsdale operational numbers, or a link to `kambourr.github.io/hillsdale-study`. The only public email on this hub is `jkambour@gmail.com`.

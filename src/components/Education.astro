@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	degrees: CollectionEntry<'education'>[];
+}
+
+const { degrees } = Astro.props;
+---
+
+{
+	degrees.map((degree) => (
+		<article class="degree">
+			<h2 class="credential">{degree.data.credential}</h2>
+			<p>{degree.data.school}</p>
+			{degree.data.dates && <p class="meta">{degree.data.dates}</p>}
+		</article>
+	))
+}

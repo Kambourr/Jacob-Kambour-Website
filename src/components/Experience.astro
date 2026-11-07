@@ -1,0 +1,25 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	roles: CollectionEntry<'experience'>[];
+}
+
+const { roles } = Astro.props;
+---
+
+{
+	roles.map((role) => (
+		<article class="role">
+			<h2 class="role-title">
+				{role.data.title}, {role.data.org}
+			</h2>
+			{role.data.dates && <p class="meta">{role.data.dates}</p>}
+			<ul>
+				{role.data.bullets.map((bullet) => (
+					<li>{bullet}</li>
+				))}
+			</ul>
+		</article>
+	))
+}

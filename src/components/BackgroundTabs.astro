@@ -1,0 +1,83 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import About from './About.astro';
+import Education from './Education.astro';
+import Experience from './Experience.astro';
+
+interface Props {
+	roles: CollectionEntry<'experience'>[];
+	degrees: CollectionEntry<'education'>[];
+	about: string;
+}
+
+const { roles, degrees, about } = Astro.props;
+---
+
+<section class="background" id="background">
+	<div class="tablist" role="tablist" aria-label="Background">
+		<button type="button" role="tab" id="tab-experience" aria-controls="panel-experience" aria-selected="true" tabindex="0">
+			Experience
+		</button>
+		<button type="button" role="tab" id="tab-education" aria-controls="panel-education" aria-selected="false" tabindex="-1">
+			Education
+		</button>
+		<button type="button" role="tab" id="tab-about" aria-controls="panel-about" aria-selected="false" tabindex="-1">
+			About
+		</button>
+	</div>
+	<div class="tab-panel" role="tabpanel" id="panel-experience" aria-labelledby="tab-experience">
+		<Experience roles={roles} />
+	</div>
+	<div class="tab-panel" role="tabpanel" id="panel-education" aria-labelledby="tab-education" hidden>
+		<Education degrees={degrees} />
+	</div>
+	<div class="tab-panel" role="tabpanel" id="panel-about" aria-labelledby="tab-about" hidden>
+		<About about={about} />
+	</div>
+</section>
+
+<script>
+	const root = document.getElementById('background');
+	if (root) {
+		const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+		const panels = [...root.querySelectorAll<HTMLElement>('[role="tabpanel"]')];
+
+		const select = (tab: HTMLButtonElement, moveFocus = false) => {
+			for (const item of tabs) {
+				const on = item === tab;
+				item.setAttribute('aria-selected', on ? 'true' : 'false');
+				item.tabIndex = on ? 0 : -1;
+			}
+			for (const panel of panels) {
+				panel.hidden = panel.id !== tab.getAttribute('aria-controls');
+			}
+			if (moveFocus) tab.focus();
+		};
+
+		const tablist = root.querySelector<HTMLElement>('[role="tablist"]');
+		tablist?.addEventListener('click', (event) => {
+			const tab = (event.target as HTMLElement).closest<HTMLButtonElement>('[role="tab"]');
+			if (tab) select(tab);
+		});
+
+		tablist?.addEventListener('keydown', (event) => {
+			const keyEvent = event as KeyboardEvent;
+			const current = document.activeElement;
+			if (!(current instanceof HTMLButtonElement) || !tabs.includes(current)) return;
+			const index = tabs.indexOf(current);
+			if (keyEvent.key === 'ArrowRight') {
+				keyEvent.preventDefault();
+				select(tabs[(index + 1) % tabs.length], true);
+			} else if (keyEvent.key === 'ArrowLeft') {
+				keyEvent.preventDefault();
+				select(tabs[(index - 1 + tabs.length) % tabs.length], true);
+			} else if (keyEvent.key === 'Home') {
+				keyEvent.preventDefault();
+				select(tabs[0], true);
+			} else if (keyEvent.key === 'End') {
+				keyEvent.preventDefault();
+				select(tabs[tabs.length - 1], true);
+			}
+		});
+	}
+</script>
