@@ -39,3 +39,7 @@ Configured Astro site/base for https://kambourr.github.io/personal-site/ and nor
 
 ### Confirmed repository rename
 During push GitHub redirected the old personal-site remote to Kambourr/Jacob-Kambour-Website. Verified canonical repository URL and updated origin and Astro base accordingly. Main source and gh-pages build branch pushed; working source lives in the same Desktop/personal-site folder. Intended public URL is https://kambourr.github.io/Jacob-Kambour-Website/ . Pages remains blocked by private-repository plan eligibility; no visibility change made. When enabled, use Deploy from a branch → gh-pages → / (root). Source changes require rebuilding and updating gh-pages; no automatic source-build workflow is installed.
+
+
+## Navigation update — November 7, 2026
+After 100px of scrolling, navigation collapses into a compact right-aligned name/Menu disclosure. The full desktop bar returns at the top; mobile always uses the disclosure. Escape/outside click/section selection close the menu. Project and external page links open in new tabs with noopener noreferrer; section anchors and email retain their standard behavior. Astro check/build passed; desktop and 390px mobile expansion, Escape, section selection and overflow checked.
