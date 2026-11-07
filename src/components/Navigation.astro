@@ -19,14 +19,31 @@ const root = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
   const menu = header?.querySelector<HTMLElement>('#site-menu');
   if (header && toggle && menu) {
     const mobile = window.matchMedia('(max-width: 760px)');
+    const contact = header.querySelector<HTMLElement>('.nav-contact');
+    let compact = false;
     const setOpen = (open: boolean) => {
       toggle.setAttribute('aria-expanded', String(open));
       toggle.querySelector('span')!.textContent = open ? 'Close' : 'Menu';
-      menu.hidden = mobile.matches && !open;
-      header.classList.toggle('menu-open', mobile.matches && open);
+      menu.hidden = compact && !open;
+      if (contact) contact.hidden = compact && !open;
+      header.classList.toggle('menu-open', compact && open);
     };
-    const sync = () => { toggle.hidden = !mobile.matches; setOpen(false); };
+    const sync = () => {
+      const scrolled = window.scrollY > 100;
+      const nextCompact = mobile.matches || scrolled;
+      header.classList.toggle('is-scrolled', scrolled);
+      header.classList.toggle('is-compact', nextCompact);
+      if (compact !== nextCompact) {
+        const restoreFocus = header.contains(document.activeElement);
+        compact = nextCompact;
+        toggle.hidden = !compact;
+        setOpen(false);
+        if (restoreFocus) (compact ? toggle : header.querySelector<HTMLAnchorElement>('.wordmark'))?.focus({ preventScroll: true });
+      } else toggle.hidden = !compact;
+    };
     sync();
+    setOpen(false);
+    window.addEventListener('scroll', sync, { passive: true });
     mobile.addEventListener('change', sync);
     toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
     menu.addEventListener('click', (event) => { if ((event.target as HTMLElement).closest('a')) setOpen(false); });
