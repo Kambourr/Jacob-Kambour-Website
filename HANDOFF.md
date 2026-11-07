@@ -1,6 +1,7 @@
 # Handoff — Jacob Kambour portfolio
 
-## Current state (November 6, 2026)
+## Current state (November 7, 2026)
+The portfolio is live at https://kambourr.github.io/Jacob-Kambour-Website/ . Source is saved in this folder and pushed to main in Kambourr/Jacob-Kambour-Website. The user made the repository public; GitHub Pages deploys from gh-pages at / (root). Deployment run 42414127048 succeeded. Public homepage, case study, stylesheets and project image returned HTTP 200. Older publication-blocker notes below are historical and superseded.
 Local Astro redesign implemented with Codex agents. Jacob chose https://wearestokt.com/ as a style reference, then explicitly said not to use Superdesign and to build directly. This supersedes old Cursor/provider and canvas-first workflow instructions. No further Superdesign work is authorized by default.
 
 Reference character: floating inset menu, large regular-weight sans headings, monospaced labels, spacious imagery and contrasting sections. Original petrol/mint/cream palette; Inter + IBM Plex Mono. No borrowed Stokt content assets. DESIGN.md is the governing visual system.
@@ -25,7 +26,7 @@ Tesla project uses historical backtests, not live forward predictions. Numerical
 Astro check passed with 0 errors/warnings/hints; static build generates both routes. Browser review uses production preview. Homepage checked at 375,390,768,1280,1366,1440px widths with no horizontal document overflow; images load. Mobile Menu opens, Tab reaches Work first, Escape closes and restores focus. Desktop anchor and case-study navigation work. Reduced-motion rules disable movement; no entrance-delayed content. Screenshot evidence in docs/previews. This is not a complete automated accessibility audit.
 
 ## Git/deployment
-Existing stacked PRs #1–#4 are historical and not merged by this work. Local source changes are uncommitted; do not reset, rebase, force-push or blindly overwrite them. No remote push, merge, Pages, custom domain or visibility change was performed. User must request publication separately. If merges are authorized, prior preference was merge commits rather than squash.
+Source changes were merged into main with a merge commit and pushed with user authorization. Built output is on gh-pages. Preserve history; do not reset or force-push. Updating source requires npm run build and publishing the resulting dist contents to gh-pages; no automatic source-build workflow is installed. No custom domain configured.
 
 ## Superdesign artifacts
 .superdesign contains earlier source init/reference extraction and a baseline canvas record. The pending redesign CLI was interrupted when Jacob switched workflows; the backend may have accepted that request before interruption. Do not claim it was refunded/cancelled remotely. These artifacts are not the website implementation. Old .preview-shots captures predate the redesign; use docs/previews instead.
