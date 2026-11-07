@@ -1,3 +1,5 @@
+> **Current implementation update — November 6, 2026:** Jacob selected wearestokt.com as visual reference and requested direct implementation by Codex agents. The current site uses the design system in DESIGN.md, a visible background section instead of tabs, and a local Tesla project case study. Earlier visual/workflow requirements below are historical when they conflict with D20. Public-content and privacy requirements remain.
+
 # BRIEF — Jacob Kambour personal site
 
 **Status:** v1 in progress (2026-11-06). GitHub repo `Kambourr/personal-site` (private). Local Desktop folder remains the checkout. Do not merge PRs or enable Pages until Jacob asks.

@@ -22,3 +22,12 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+.superdesign/tmp/
+
+# Third-party design reference downloads (not website assets)
+.superdesign/website/
+
+# Local design workspace and historical screenshots
+.superdesign/
+.preview-shots/

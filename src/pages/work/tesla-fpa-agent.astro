@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import dashboard from '../../assets/tesla-fpa-agent.png';
+const home = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+const live = 'https://kambourr.github.io/tesla-fpa-agent/';
+const stages = [
+  ['01', 'Source the facts', 'Public SEC filings and Tesla delivery releases feed a DuckDB database. Values retain their filing and reporting period.'],
+  ['02', 'Model the drivers', 'Driver-based historical forecasts and variance bridges connect the financial result to the assumptions behind it.'],
+  ['03', 'Draft the explanation', 'An AI model writes commentary from a computed fact sheet, rather than interpreting raw filings on its own.'],
+  ['04', 'Check before publishing', 'Code checks cited figures against the fact sheet. A failed draft gets one retry; unresolved discrepancies stay visibly flagged.'],
+];
+---
+<BaseLayout title="Tesla FP&A Agent — Jacob Kambour" description="A closer look at Jacob Kambour’s independent finance project: public filings, historical forecasts, variance analysis and checked AI commentary.">
+  <Navigation current="work" />
+  <main id="main">
+    <section class="case-hero" id="work">
+      <div class="case-container">
+        <a class="case-back" href={`${home}#work`}>← Back to projects</a>
+        <p class="case-eyebrow">( 01 / INDEPENDENT PROJECT )</p>
+        <h1>Tesla FP&amp;A<br /><span>Agent</span></h1>
+        <div class="case-intro">
+          <h2>Project overview</h2>
+          <p>From public filings to historical forecasts, variance bridges, and AI-written commentary—with numerical checks built into the workflow.</p>
+        </div>
+        <div class="case-links">
+          <a class="case-button" href={live}>Open live dashboard <span aria-hidden="true">↗</span></a>
+          <a class="case-secondary" href="https://github.com/Kambourr/tesla-fpa-agent">Explore the code <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="case-independence">Independent project using public data. Not affiliated with or endorsed by Tesla.</p>
+      </div>
+    </section>
+    <section class="case-image-section" aria-label="Project preview">
+      <figure class="case-container case-figure">
+        <Image src={dashboard} alt="Tesla FP&A Agent dashboard with historical forecast, actual revenue and a variance bridge." widths={[720, 1080, 1440]} sizes="(max-width: 760px) calc(100vw - 40px), min(1200px, 90vw)" loading="eager" />
+        <figcaption>A real dashboard capture. The live project provides the underlying sources and methodology.</figcaption>
+      </figure>
+    </section>
+    <section class="case-section case-container">
+      <div class="case-heading"><p class="case-eyebrow">( PURPOSE )</p><h2>Project objective</h2></div>
+      <div class="case-prose"><p>Quarterly analysis connects forecasts, reported results, business drivers, and a clear explanation of what changed. Generating the explanation is only one part of that work. Checking it matters just as much.</p><p>This project separates the calculations from the prose: code handles the data, forecasts and variance bridges; the model drafts commentary from those computed figures; code then checks the figures it cites.</p></div>
+    </section>
+    <section class="case-process" aria-labelledby="process-title">
+      <div class="case-container">
+        <p class="case-eyebrow">( HOW IT WORKS )</p>
+        <h2 id="process-title">How it works</h2>
+        <div class="case-steps">{stages.map(([number, title, description]) => <article><span class="case-step-number">{number}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
+        <div class="case-stack"><span>PROJECT TOOLS</span><p>Python · SQL · DuckDB · OpenAI · Static dashboard</p></div>
+      </div>
+    </section>
+    <section class="case-section case-container" id="background">
+      <div class="case-heading"><p class="case-eyebrow">( EVALUATION )</p><h2>Accuracy &amp; limitations</h2></div>
+      <div class="case-prose"><p>The published forecasts are historical backtests across 12 quarters. Each uses information available at the previous quarter’s filing date. They are not live forward predictions.</p><p>A figure can be faithfully quoted while the forecast itself is wrong. The dashboard makes that distinction visible: forecast misses are shown, and numerical verification checks whether the commentary matches the underlying data.</p><p>The models are deliberately simple and transparent. Public delivery counts are manually transcribed from releases, then validated. The dashboard documents these assumptions alongside the results.</p></div>
+    </section>
+    <section class="case-takeaway case-container" id="about">
+      <p class="case-eyebrow">( SUMMARY )</p>
+      <h2>What the project demonstrates</h2>
+      <p>The project combines financial forecasting, database queries, variance analysis, and AI-generated commentary. Source references and numerical checks let readers inspect the analysis and its assumptions.</p>
+      <a class="case-text-link" href={`${live}how-it-was-built.html`}>Read the full build story <span aria-hidden="true">↗</span></a>
+    </section>
+    <footer class="case-footer">
+      <div class="case-container"><p class="case-eyebrow">( CONTINUE EXPLORING )</p><h2>Project links</h2><div class="case-links"><a class="case-button" href={live}>Open the dashboard <span aria-hidden="true">↗</span></a><a class="case-secondary" href={home}>Back to Jacob’s portfolio <span aria-hidden="true">↗</span></a></div></div>
+    </footer>
+  </main>
+</BaseLayout>
+<style>
+  .case-container{width:min(1200px,calc(100% - 96px));margin-inline:auto}.case-hero{background:var(--dark,#092f33);color:var(--bg,#f2f1ea);padding:160px 0 72px}.case-back{display:inline-block;margin-bottom:52px;color:var(--mint,#c8e6dc);font-size:14px;text-decoration:none}.case-eyebrow{font-family:var(--font-mono,monospace);font-size:12px;letter-spacing:.05em;margin:0 0 24px}.case-hero h1{font-size:clamp(46px,7vw,96px);font-weight:400;line-height:1;letter-spacing:-.055em;margin:0 0 48px}.case-hero h1 span{color:var(--mint,#c8e6dc)}.case-intro{display:grid;grid-template-columns:1fr 1.5fr;gap:48px;max-width:1000px}.case-intro h2{font-size:24px;font-weight:400;margin:0}.case-intro p{font-size:19px;line-height:1.5;margin:0;max-width:52ch}.case-links{display:flex;flex-wrap:wrap;gap:16px;margin-top:32px;align-items:center}.case-button,.case-secondary{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;min-height:48px;padding:14px 20px;border-radius:8px;text-decoration:none;font-family:var(--font-mono,monospace);font-size:12px;text-transform:uppercase}.case-button{background:var(--mint,#c8e6dc);color:var(--dark,#092f33)}.case-secondary{color:inherit;border:1px solid #6b8989}.case-button:hover,.case-secondary:hover{transform:translateY(-2px)}.case-independence{font-size:13px;color:#b8ccc8;line-height:1.5;margin-top:24px}.case-image-section{background:#dce5de;padding:56px 0}.case-figure img{display:block;width:100%;height:auto;border-radius:12px;box-shadow:0 16px 48px #092f331a}.case-figure figcaption{font-size:13px;color:var(--ink-soft,#526668);margin-top:18px}.case-section{display:grid;grid-template-columns:1fr 1fr;gap:80px;padding-block:100px}.case-heading h2,.case-process h2,.case-takeaway h2{font-size:clamp(32px,4vw,52px);font-weight:400;letter-spacing:-.045em;line-height:1.08;margin:0}.case-prose p{font-size:17px;line-height:1.65;margin:0 0 24px;color:var(--ink-soft,#526668)}.case-prose p:last-child{margin-bottom:0}.case-process{background:var(--dark-deep,#071e22);color:var(--bg,#f2f1ea);padding:88px 0}.case-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:56px}.case-steps article{border-top:1px solid #35575a;padding-top:20px}.case-step-number{font-family:var(--font-mono,monospace);font-size:13px;color:var(--mint,#c8e6dc)}.case-steps h3{font-size:22px;line-height:1.2;font-weight:400;letter-spacing:-.02em;margin:30px 0 16px}.case-steps p{font-size:16px;line-height:1.6;color:#b8ccc8}.case-stack{display:flex;flex-wrap:wrap;gap:16px 48px;align-items:center;border-top:1px solid #35575a;margin-top:36px;padding-top:28px}.case-stack span{font-size:12px;font-family:var(--font-mono,monospace)}.case-stack p{margin:0;color:#b8ccc8;font-size:15px}.case-takeaway{border-top:1px solid #ccd4d0;padding-block:64px 96px}.case-takeaway>p:not(.case-eyebrow){max-width:64ch;font-size:19px;line-height:1.6;color:var(--ink-soft,#526668);margin:28px 0}.case-text-link{display:inline-flex;gap:32px;align-items:center;color:var(--ink,#102d30);text-underline-offset:6px;min-height:44px}.case-footer{background:var(--dark,#092f33);color:var(--bg,#f2f1ea);padding:80px 0}.case-footer h2{font-size:clamp(40px,6vw,80px);font-weight:400;line-height:1;letter-spacing:-.045em;margin:0}.case-back:focus-visible,.case-button:focus-visible,.case-secondary:focus-visible,.case-text-link:focus-visible{outline:2px solid currentColor;outline-offset:5px}
+  @media(max-width:800px){.case-container{width:calc(100% - 40px)}.case-hero{padding:128px 0 48px}.case-back{margin-bottom:36px}.case-hero h1{margin-bottom:32px}.case-intro{grid-template-columns:1fr;gap:16px}.case-section{grid-template-columns:1fr;gap:32px;padding-block:64px}.case-steps{grid-template-columns:1fr 1fr;gap:24px}.case-process{padding:64px 0}.case-takeaway{padding-block:48px 64px}.case-image-section{padding:32px 0}.case-footer{padding:64px 0}}
+  @media(max-width:480px){.case-steps{grid-template-columns:1fr}.case-steps h3{margin-top:20px}.case-steps p{margin-bottom:0}.case-intro p{font-size:17px}.case-button,.case-secondary{gap:16px;font-size:11px}.case-hero h1{font-size:46px}}
+  @media(prefers-reduced-motion:reduce){.case-button:hover,.case-secondary:hover{transform:none}}
+</style>

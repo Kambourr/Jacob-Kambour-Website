@@ -3,12 +3,14 @@
 - id: tesla-fpa-agent
   title: Tesla FP&A Agent
   summary: >-
-    A public Tesla FP&A agent that reads Tesla’s public filings, forecasts the
-    quarter, explains the variance, and writes the analyst memo, with every
-    figure checked by code.
+    A public-data finance workflow that turns Tesla filings into historical
+    forecasts, variance analysis, and AI-written commentary—with code checking
+    the figures against source data.
   href: https://kambourr.github.io/tesla-fpa-agent/
   hrefLabel: Open live dashboard
   image: tesla-fpa-agent.png
+  tags: [Financial modeling, Applied AI]
+  caseStudyPath: work/tesla-fpa-agent/
   imageAlt: >-
     Screenshot of the live Tesla FP&A Agent overview for Q3 2026, showing the
     public-filings revenue figures and a revenue bridge chart. Not rebuilt here;

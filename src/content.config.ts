@@ -52,6 +52,8 @@ const work = defineCollection({
 		href: httpsHref,
 		hrefLabel: z.string(),
 		image: z.string(),
+		tags: z.array(z.string()).default([]),
+		caseStudyPath: z.string().regex(/^work\/[a-z0-9-]+\/$/).optional(),
 		imageAlt: z.string(),
 		order: z.number(),
 	}),

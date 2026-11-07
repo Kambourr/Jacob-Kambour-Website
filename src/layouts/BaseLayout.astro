@@ -1,32 +1,28 @@
 ---
 import { Font } from 'astro:assets';
 import '../styles/global.css';
-
-interface Props {
-	title: string;
-	description: string;
-}
-
+interface Props { title: string; description: string }
 const { title, description } = Astro.props;
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 ---
-
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="description" content={description} />
-		<meta name="color-scheme" content="light" />
-		<meta name="theme-color" content="#f6f5f1" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<title>{title}</title>
-		<Font cssVariable="--font-serif" preload />
-		<Font cssVariable="--font-sans" preload />
-	</head>
-	<body>
-		<a class="skip" href="#work">Skip to featured work</a>
-		<a class="skip" href="#background">Skip to background</a>
-		<slot />
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#092f33" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <title>{title}</title>
+    <Font cssVariable="--font-sans" preload />
+    <Font cssVariable="--font-mono-family" preload />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <slot />
+  </body>
 </html>

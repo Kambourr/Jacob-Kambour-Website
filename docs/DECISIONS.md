@@ -63,3 +63,26 @@ D16 stripped school and role from the first screen; Jacob then said a recruiter 
 
 ## D18. Personal Gmail on this hub only (2026-11-06)
 Jacob explicitly authorized displaying `jkambour@gmail.com` as the public contact on this personal hub only. It replaces the D15 Grok Bot inbox (`jkambour@mail.grokbot.com`), which must not remain as an allowed or rendered contact here. Schema allows mailto solely for `mailto:jkambour@gmail.com`. LinkedIn stays the other contact method; GitHub stays a profile link. Still reject phone, street address, résumé files, GPA, other inboxes, and the Hillsdale study URL. Do not change the Tesla FP&A agent repo or its no-private-contact policy.
+
+## D19. Superdesign review requested (2026-11-06)
+Jacob requested a local review and Superdesign redesign in Codex, superseding the prior Cursor-only workflow for this task. Review recommends a modern finance portfolio, visible background summaries and scalable project cards; these are proposals, not approved visual decisions. Existing public-content/privacy and deployment restrictions remain. See docs/DESIGN-REVIEW.md.
+
+## D20. Stokt reference and direct Codex build (2026-11-06)
+Jacob selected https://wearestokt.com/ for its presentation, fonts and menu. He then explicitly requested no Superdesign and a direct build using Codex agents. This supersedes prior provider/agent workflow rules and the Superdesign canvas approval workflow for this build. The pending local Superdesign process was interrupted; no subsequent Superdesign commands were used.
+
+Implemented original petrol/mint/cream palette, Inter and IBM Plex Mono as font substitutes, floating inset navigation, large regular-weight headlines, screenshot-led project presentation, visible experience/education and contact footer. No Stokt imagery, brand assets or copy is used by the application. Supersedes D12/D16 visual system and mandatory background tabs. New local Tesla case-study route explains rather than rehosts the dashboard. Source remains unchanged in Tesla repo.
+
+Project cards now read image, tags, CTA label and optional caseStudyPath from work.yaml. No fabricated future project cards. Current privacy restrictions and no publish/merge without user instruction remain.
+
+
+## Direct recruiter-facing copy — November 6, 2026
+Jacob rejected slogans and AI-sounding quips. Use literal section headings and factual supporting text. Homepage: Projects, Experience & Education, About me, Contact me. Case study: Project overview, Project objective, How it works, Accuracy & limitations, What the project demonstrates, Project links. Removed curiosity/starting-point/through-line/learning-the-numbers wording.
+
+
+## Resume-based job bullets — November 6, 2026
+Updated Tesla and Blendid bullets using the user-provided Desktop resume. Retained approved Tesla public-facing title. Omitted Tesla delivery counts/value and private study metrics; included a high-level study/app/analysis description. Blendid bullets now cover C-suite cost reports, estimated downtime impact, M2 serviceability collaboration and multi-state robot operations. Resume PDF itself, contact details, GPA and unrelated projects were not added to the site. Homepage renders all approved YAML bullets rather than silently filtering/truncating them.
+
+
+## GitHub publication preparation — November 7, 2026
+Jacob authorized pushing this site and publishing through GitHub Pages in Kambourr/personal-site. Remote and authenticated owner verified. Pages setup returned HTTP 422: current plan does not support Pages for this private repository. Repository visibility remains private.
+Configured Astro site/base for https://kambourr.github.io/personal-site/ and normalized internal base URLs. Source will be merged with a merge commit into main; built static output prepared on gh-pages. Publishing remains blocked until private-repo Pages is supported or Jacob authorizes a visibility change. Local preview URL now includes /personal-site/.
