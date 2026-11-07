@@ -5,7 +5,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 export default defineConfig({
 	output: 'static',
 	site: 'https://kambourr.github.io',
-	base: '/personal-site',
+	base: '/Jacob-Kambour-Website',
 	trailingSlash: 'always',
 	fonts: [
 		{

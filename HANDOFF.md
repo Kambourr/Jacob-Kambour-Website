@@ -34,3 +34,7 @@ Existing stacked PRs #1–#4 are historical and not merged by this work. Local s
 ## GitHub publication preparation — November 7, 2026
 Jacob authorized pushing this site and publishing through GitHub Pages in Kambourr/personal-site. Remote and authenticated owner verified. Pages setup returned HTTP 422: current plan does not support Pages for this private repository. Repository visibility remains private.
 Configured Astro site/base for https://kambourr.github.io/personal-site/ and normalized internal base URLs. Source will be merged with a merge commit into main; built static output prepared on gh-pages. Publishing remains blocked until private-repo Pages is supported or Jacob authorizes a visibility change. Local preview URL now includes /personal-site/.
+
+
+### Confirmed repository rename
+During push GitHub redirected the old personal-site remote to Kambourr/Jacob-Kambour-Website. Verified canonical repository URL and updated origin and Astro base accordingly. Main source and gh-pages build branch pushed; working source lives in the same Desktop/personal-site folder. Intended public URL is https://kambourr.github.io/Jacob-Kambour-Website/ . Pages remains blocked by private-repository plan eligibility; no visibility change made. When enabled, use Deploy from a branch → gh-pages → / (root). Source changes require rebuilding and updating gh-pages; no automatic source-build workflow is installed.
