@@ -21,6 +21,7 @@ const root = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
     const mobile = window.matchMedia('(max-width: 760px)');
     const contact = header.querySelector<HTMLElement>('.nav-contact');
     let compact = false;
+    let scrolled = false;
     const setOpen = (open: boolean) => {
       toggle.setAttribute('aria-expanded', String(open));
       toggle.querySelector('span')!.textContent = open ? 'Close' : 'Menu';
@@ -29,7 +30,8 @@ const root = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
       header.classList.toggle('menu-open', compact && open);
     };
     const sync = () => {
-      const scrolled = window.scrollY > 100;
+      // Separate thresholds prevent flickering near the collapse point.
+      scrolled = window.scrollY > (scrolled ? 48 : 120);
       const nextCompact = mobile.matches || scrolled;
       header.classList.toggle('is-scrolled', scrolled);
       header.classList.toggle('is-compact', nextCompact);
@@ -43,7 +45,12 @@ const root = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
     };
     sync();
     setOpen(false);
-    window.addEventListener('scroll', sync, { passive: true });
+    let framePending = false;
+    window.addEventListener('scroll', () => {
+      if (framePending) return;
+      framePending = true;
+      requestAnimationFrame(() => { sync(); framePending = false; });
+    }, { passive: true });
     mobile.addEventListener('change', sync);
     toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
     menu.addEventListener('click', (event) => { if ((event.target as HTMLElement).closest('a')) setOpen(false); });
