@@ -43,3 +43,7 @@ During push GitHub redirected the old personal-site remote to Kambourr/Jacob-Kam
 
 ## Navigation update — November 7, 2026
 After 100px of scrolling, navigation collapses into a compact right-aligned name/Menu disclosure. The full desktop bar returns at the top; mobile always uses the disclosure. Escape/outside click/section selection close the menu. Project and external page links open in new tabs with noopener noreferrer; section anchors and email retain their standard behavior. Astro check/build passed; desktop and 390px mobile expansion, Escape, section selection and overflow checked.
+
+
+## Scrollcraft refinement — November 8, 2026
+User selected refinement of the existing layout. Homepage imports scrollcraft-portfolio.css and the unmodified MIT Scrollcraft runtime (src/vendor/scrollcraft); parallax only affects hero artifact planes. ProjectProcess.astro adds a factual, accessible three-step explanation to the Tesla project. Preserve its numerical-check vs forecast-accuracy distinction. No generated assets, paid services or content changes to experience. Brief, score and verification limitations: scrollcraft/builds/portfolio-refinement/. Homebrew ffmpeg installed for skill preflight; optional KIE and standalone Playwright unused. Existing compact menu and new-tab links retained.

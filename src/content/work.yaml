@@ -4,7 +4,7 @@
   title: Tesla FP&A Agent
   summary: >-
     A public-data finance workflow that turns Tesla filings into historical
-    forecasts, variance analysis, and AI-written commentary—with code checking
+    forecasts, variance analysis, and AI-written commentary, with code checking
     the figures against source data.
   href: https://kambourr.github.io/tesla-fpa-agent/
   hrefLabel: Open live dashboard

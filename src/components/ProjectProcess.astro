@@ -1,0 +1,40 @@
+---
+const steps = [
+  { title: 'Public filings', label: 'Source data', text: 'Tesla SEC filings and investor-relations materials provide the financial inputs.', detail: 'Independent project using public information.' },
+  { title: 'Historical forecasts', label: 'Financial modeling', text: 'Historical forecasts are compared with reported results to explain the variance.', detail: 'Backtesting, not a live prediction of future results.' },
+  { title: 'Checked commentary', label: 'Applied AI', text: 'AI drafts the explanation. Code checks the figures against the underlying data.', detail: 'Checking the numbers does not establish forecast accuracy.' },
+];
+---
+<div class="process-inspector" data-process>
+  <div class="process-intro"><span class="process-kicker">HOW IT WORKS</span><p>From source data <br />to financial analysis.</p></div>
+  <div class="process-body">
+    <div class="process-controls" aria-label="Project workflow">
+      {steps.map((step, i) => <button type="button" data-step={i} aria-pressed={i === 0 ? 'true' : 'false'} aria-controls="process-explanation"><span class="step-dot" aria-hidden="true"></span>{step.title}</button>)}
+    </div>
+    <div class="process-panels" id="process-explanation" aria-live="polite" aria-atomic="true">
+      {steps.map((step, i) => <div class="process-panel" data-panel={i}><span class="process-label">{step.label}</span><p>{step.text}</p><small>{step.detail}</small></div>)}
+    </div>
+  </div>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-process]').forEach(inspector => {
+    const buttons = Array.from(inspector.querySelectorAll<HTMLButtonElement>('[data-step]'));
+    const panels = Array.from(inspector.querySelectorAll<HTMLElement>('[data-panel]'));
+    const select = (index: number) => {
+      buttons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
+      panels.forEach((panel, i) => { panel.hidden = i !== index; });
+      inspector.style.setProperty('--process-step', String(index));
+    };
+    buttons.forEach((button, index) => {
+      button.addEventListener('click', () => select(index));
+      button.addEventListener('keydown', event => {
+        if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const next = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + buttons.length) % buttons.length;
+        select(next); buttons[next].focus();
+      });
+    });
+    select(0);
+    inspector.classList.add('is-enhanced');
+  });
+</script>
