@@ -1,5 +1,6 @@
 ---
-interface Props { current?: string }
+// 'projects' marks the Projects page itself; 'work' marks a case study inside it.
+interface Props { current?: 'projects' | 'work' }
 const { current } = Astro.props;
 const root = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 ---
@@ -7,7 +8,7 @@ const root = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
   <a class="wordmark" href={root} aria-label="Jacob Kambour — home">Jacob Kambour<span>FINANCE & ANALYTICS</span></a>
   <button class="menu-toggle" type="button" aria-controls="site-menu" aria-expanded="false" hidden><span>Menu</span><span class="menu-icon" aria-hidden="true">＋</span></button>
   <nav class="nav-links" id="site-menu" aria-label="Main navigation">
-    <a class="roll-link" href={`${root}#work`} aria-current={current === 'work' ? 'page' : undefined}><span>Projects</span><span aria-hidden="true">Projects</span></a>
+    <a class="roll-link" href={`${root}projects/`} aria-current={current === 'projects' ? 'page' : current === 'work' ? 'true' : undefined}><span>Projects</span><span aria-hidden="true">Projects</span></a>
     <a class="roll-link" href={`${root}#background`}><span>Experience</span><span aria-hidden="true">Experience</span></a>
     <a class="roll-link" href={`${root}#about`}><span>About</span><span aria-hidden="true">About</span></a>
   </nav>
