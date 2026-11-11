@@ -9,8 +9,7 @@ const root = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
   <button class="menu-toggle" type="button" aria-controls="site-menu" aria-expanded="false" hidden><span>Menu</span><span class="menu-icon" aria-hidden="true">＋</span></button>
   <nav class="nav-links" id="site-menu" aria-label="Main navigation">
     <a class="roll-link" href={`${root}projects/`} aria-current={current === 'projects' ? 'page' : current === 'work' ? 'true' : undefined}><span>Projects</span><span aria-hidden="true">Projects</span></a>
-    <a class="roll-link" href={`${root}#background`}><span>Experience</span><span aria-hidden="true">Experience</span></a>
-    <a class="roll-link" href={`${root}#about`}><span>About</span><span aria-hidden="true">About</span></a>
+    <a class="roll-link" href={`${root}#experience`}><span>Experience</span><span aria-hidden="true">Experience</span></a>
   </nav>
   <a class="button button-light nav-contact" href="mailto:jkambour@gmail.com">Get in touch <span aria-hidden="true">↗</span></a>
 </header>

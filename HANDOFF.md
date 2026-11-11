@@ -78,3 +78,11 @@ Branch claude/exciting-fermi-9e7opt adds a separate draft homepage at /v2/ (src/
 - Verification: astro check 0 errors/0 warnings; build 5 routes. Production preview at 1440×900, 1280×800, 1024×768, 390×844 and reduced motion: no horizontal overflow, images load, no console errors, details toggle works. Screenshots: docs/previews/v2-onescreen-*.jpg. To promote it, move the markup into index.astro (or swap routes) after Jacob approves.
 
 - Nov 11 update: experience.yaml bullets now copy the Nov 11 résumé verbatim (affects both / and /v2/ in source). This includes the Tesla line "about 50 quarter-end deliveries totaling over $2 million in revenue", which earlier notes had kept off the site (delivery value is not revenue); Jacob asked for these bullets. /v2/ was republished to gh-pages; the live homepage was not rebuilt.
+
+
+## One-screen homepage promoted to / — November 11, 2026
+Jacob approved the /v2/ design and asked for it to be merged to main and published. src/pages/v2.astro became src/pages/index.astro; the Stokt-inspired homepage is replaced (it remains in git history, e.g. main at abc2680).
+- /v2/ now redirects to /Jacob-Kambour-Website/ via `redirects` in astro.config.mjs (Astro does not base-prefix redirect destinations, so the base is written out). The redirect page is noindex.
+- Navigation.astro (used by /projects/ and case studies): Experience now links to `#experience` on the new homepage; the About link was removed because the homepage has no About section. Projects page, case studies, ContactFooter and scrollcraft-portfolio.css (still imported by /projects/) are unchanged.
+- site.yaml fields heroLine, whoLine, proof and about are no longer rendered by the homepage; they are kept for now.
+- Verification: astro check 0 errors/0 warnings; build 4 pages + /v2/ redirect. Production preview: homepage at 1440 and 390, /v2/ lands on /, both case studies and /projects/ load with no HTTP errors or console errors, the Projects menu's Experience link lands on #experience. The two delivery-center case-study images that start unloaded are lazy-loaded and load on scroll (same as the live site before this change).
