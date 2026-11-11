@@ -57,6 +57,7 @@ const tape = [
 ---
 <BaseLayout title="Jacob Kambour — FP&A and Financial Analysis" description="Jacob Kambour: MS Finance and Analytics student at Santa Clara University. Experience at Tesla and Blendid; projects in forecasting, variance analysis and financial modeling.">
   <main id="main" class="v2">
+    <div class="screen">
     <div class="top">
       <header class="intro">
         <p class="hello">Portfolio of</p>
@@ -117,8 +118,10 @@ const tape = [
         <p class="note">Independent projects using public data. Not affiliated with or endorsed by Tesla.</p>
       </section>
     </div>
+    <a class="scroll-cue" href="#bridge">Tesla FP&amp;A Agent revenue bridge <span aria-hidden="true">↓</span></a>
+    </div>
 
-    <section class="terminal" aria-labelledby="term-title">
+    <section class="terminal" id="bridge" aria-labelledby="term-title">
       <div class="term-inner">
         <div class="term-head">
           <h2 id="term-title"><span class="prompt" aria-hidden="true">&gt;</span> Tesla FP&amp;A Agent · Revenue bridge · Q3 2026<span class="cursor" aria-hidden="true"></span></h2>
@@ -164,8 +167,16 @@ const tape = [
     --cream: #f2f1ea; --ink: #102d30; --soft: #526668; --line: #ccd4d0;
     --petrol: #092f33; --deep: #071e22; --mint: #9bd4c2; --ice: #c8e6dc;
     --amber: #e3b062; --up: #acdfc9; --t-line: #1d4a4e;
-    min-height: 100svh; display: flex; flex-direction: column; background: var(--cream); color: var(--ink);
+    background: var(--cream); color: var(--ink);
   }
+  /* The first screen holds only the recruiter content; the terminal band starts below the fold. */
+  .screen { min-height: 100svh; display: flex; flex-direction: column; }
+  .screen > .top { margin-block: auto; }
+  .scroll-cue { align-self: center; display: inline-flex; gap: 10px; align-items: center; margin: 8px 0 clamp(16px, 3vh, 28px); padding: 8px 12px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--soft); border-radius: 6px; transition: color .2s; }
+  .scroll-cue:hover { color: var(--ink); }
+  .scroll-cue:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .scroll-cue span { animation: nudge 1.8s ease-in-out infinite; }
+  @keyframes nudge { 50% { transform: translateY(3px); } }
   .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
   /* ---------- top: identity, experience, projects ---------- */
@@ -213,14 +224,14 @@ const tape = [
 
   /* ---------- terminal band ---------- */
   .terminal {
-    flex: 1; display: flex; flex-direction: column; position: relative; isolation: isolate;
+    display: flex; flex-direction: column; position: relative; isolation: isolate;
     background: var(--deep); color: var(--ice); font-family: var(--font-mono); border-top: 1px solid var(--t-line);
   }
   .terminal::before { /* faint scanlines */
     content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
     background: radial-gradient(ellipse at 30% 0%, #1d5a5440, transparent 60%), repeating-linear-gradient(0deg, #ffffff05 0 1px, transparent 1px 3px);
   }
-  .term-inner { width: min(1180px, calc(100% - 96px)); margin-inline: auto; padding: clamp(14px, 2.2vh, 28px) 0 clamp(12px, 1.8vh, 20px); flex: 1; display: flex; flex-direction: column; }
+  .term-inner { width: min(1180px, calc(100% - 96px)); margin-inline: auto; padding: clamp(40px, 6vh, 64px) 0 clamp(32px, 5vh, 48px); display: flex; flex-direction: column; }
   .term-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
   .term-head h2 { font-size: 12px; font-weight: 400; text-transform: uppercase; letter-spacing: .08em; color: var(--mint); }
   .prompt { color: var(--amber); margin-right: 6px; }
@@ -230,9 +241,9 @@ const tape = [
   .term-link:hover { background: #ffffff; }
   .term-link:focus-visible { outline: 2px solid var(--ice); outline-offset: 3px; }
 
-  .term-body { flex: 1; display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(220px, 1fr); gap: clamp(28px, 5vw, 72px); align-items: end; margin-top: clamp(14px, 2vh, 22px); }
-  .bridge { display: grid; grid-template-rows: 1fr auto auto; height: 100%; min-height: 160px; }
-  .plot { position: relative; display: grid; grid-template-columns: repeat(8, 1fr); gap: clamp(6px, 1vw, 14px); padding-left: 44px; min-height: 104px; margin-top: 18px; }
+  .term-body { flex: 1; display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(220px, 1fr); gap: clamp(28px, 5vw, 72px); align-items: end; margin-top: clamp(24px, 3.4vh, 36px); }
+  .bridge { display: grid; grid-template-rows: 1fr auto auto; height: 100%; min-height: 280px; }
+  .plot { position: relative; display: grid; grid-template-columns: repeat(8, 1fr); gap: clamp(6px, 1vw, 14px); padding-left: 44px; min-height: 200px; margin-top: 18px; }
   .grid { position: absolute; inset: 0 0 0 44px; display: flex; flex-direction: column; justify-content: space-between; pointer-events: none; }
   .grid span { position: relative; border-top: 1px dashed var(--t-line); height: 0; }
   .grid span::before { content: attr(data-v); position: absolute; right: calc(100% + 8px); top: -7px; font-size: 10px; color: #6f9590; }
@@ -288,6 +299,7 @@ const tape = [
     .bar, .cursor { animation: none; }
     .tape-track { animation: none; width: auto; flex-wrap: wrap; padding: 6px 20px; }
     .tape-track li[aria-hidden] { display: none; }
-    .project, .thumb :global(img), .chev { transition: none; }
+    .proj-card, .thumb :global(img), .chev, .scroll-cue { transition: none; }
+    .scroll-cue span { animation: none; }
   }
 </style>
