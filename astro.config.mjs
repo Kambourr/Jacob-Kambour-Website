@@ -22,5 +22,13 @@ export default defineConfig({
 			weights: ['400', '500'],
 			styles: ['normal'],
 		},
+		// Pixel display face used only by the /v2/ terminal band.
+		{
+			provider: fontProviders.google(),
+			name: 'Silkscreen',
+			cssVariable: '--font-pixel',
+			weights: ['400'],
+			styles: ['normal'],
+		},
 	],
 });
