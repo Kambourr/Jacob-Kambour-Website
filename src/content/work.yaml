@@ -2,6 +2,9 @@
 # Do not rebuild the FP&A dashboard here; link out only.
 - id: tesla-fpa-agent
   title: Tesla FP&A Agent
+  tagline: >-
+    A tool that uses Tesla’s public filings to forecast past quarters and
+    explain the variances against reported results.
   summary: >-
     A public-data finance workflow that turns Tesla filings into historical
     forecasts, variance analysis, and AI-written commentary, with code checking
@@ -18,6 +21,9 @@
   order: 1
 - id: delivery-center-estimator
   title: Delivery Center Estimator
+  tagline: >-
+    A tool that estimates what a new Tesla delivery center in any US ZIP code
+    would cost per delivery and return over ten years, using public data.
   summary: >-
     A macOS desktop app that asks what a new Tesla delivery center in any US
     ZIP code would cost per delivery and return over ten years, using a

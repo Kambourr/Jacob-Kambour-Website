@@ -48,6 +48,9 @@ const work = defineCollection({
 	loader: file('src/content/work.yaml'),
 	schema: z.object({
 		title: z.string(),
+		// One plain-English sentence for the homepage card ("A tool that ...").
+		tagline: z.string().max(160),
+		// Longer description for the Projects page detailed view.
 		summary: z.string(),
 		// Optional: a project without a public destination (private repo, no
 		// live demo) links only to its local case study.
