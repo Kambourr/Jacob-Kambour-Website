@@ -8,7 +8,7 @@
  * The current homepage (src/pages/index.astro) is untouched.
  */
 import { getCollection, getEntry } from 'astro:content';
-import { Image, Font } from 'astro:assets';
+import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -56,7 +56,6 @@ const tape = [
 ];
 ---
 <BaseLayout title="Jacob Kambour — FP&A and Financial Analysis" description="Jacob Kambour: MS Finance and Analytics student at Santa Clara University. Experience at Tesla and Blendid; projects in forecasting, variance analysis and financial modeling.">
-  <Fragment slot="head"><Font cssVariable="--font-pixel" preload /></Fragment>
   <main id="main" class="v2">
     <div class="top">
       <header class="intro">
@@ -257,7 +256,7 @@ const tape = [
   .readout .pair { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-top: 8px; }
   .readout .pair dd { margin: 0; }
   .readout .big { grid-column: 1 / -1; }
-  .readout .big dd { font-family: var(--font-pixel), var(--font-mono); font-size: clamp(36px, 3.9vw, 56px); line-height: 1; letter-spacing: 0; color: var(--amber); }
+  .readout .big dd { font-family: var(--font-sans), sans-serif; font-weight: 500; font-size: clamp(40px, 4.2vw, 60px); line-height: 1; letter-spacing: -.035em; color: var(--amber); }
   .readout .big small { display: block; margin-top: 6px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .04em; color: #c9a36b; }
   .readout .meta { grid-column: 1 / -1; }
   .readout .meta dd { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--mint); }
