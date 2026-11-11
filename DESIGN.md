@@ -1,5 +1,8 @@
 # Jacob Kambour — Stokt-inspired portfolio direction
 
+> **Update, November 11, 2026:** the homepage (`src/pages/index.astro`) now uses the one-screen layout first previewed at /v2/: cream first screen with name, links, expandable experience, education and project rows, then a petrol terminal band below the fold showing the real Q3 2026 revenue bridge. It keeps the palette, Inter and IBM Plex Mono, literal headings and the no-invented-figures rule below. The Stokt-inspired rules still describe /projects/ and the case studies. See HANDOFF.md.
+
+
 Status: implemented directly in Astro by Codex agents at Jacob’s request. Superdesign is no longer part of the build workflow.
 Reference: https://wearestokt.com/ (inspected live November 6, 2026).
 
