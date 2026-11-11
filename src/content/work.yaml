@@ -1,4 +1,4 @@
-# Selected work. One live card in v1. Do not add a Hillsdale card.
+# Selected work. Do not add a Hillsdale card.
 # Do not rebuild the FP&A dashboard here; link out only.
 - id: tesla-fpa-agent
   title: Tesla FP&A Agent
@@ -16,3 +16,18 @@
     public-filings revenue figures and a revenue bridge chart. Not rebuilt here;
     this is a capture of the live dashboard.
   order: 1
+- id: delivery-center-estimator
+  title: Delivery Center Estimator
+  summary: >-
+    A macOS desktop app that asks what a new Tesla delivery center in any US
+    ZIP code would cost per delivery and return over ten years, using a
+    gravity catchment and a DCF built only from public data.
+  image: delivery-center-estimator.png
+  tags: [Financial modeling, Geospatial analysis]
+  caseStudyPath: work/delivery-center-estimator/
+  imageAlt: >-
+    Screenshot of the Delivery Center Estimator app with ZIP 94402 in San
+    Mateo selected: a dark map of the Peninsula with the catchment shaded,
+    and a dashboard showing $619 per delivery, 5,565 deliveries a year, cost
+    drivers and cash flow. Model estimates from public data.
+  order: 2

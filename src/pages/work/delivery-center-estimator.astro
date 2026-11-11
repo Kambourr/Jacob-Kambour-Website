@@ -1,0 +1,285 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import '../../styles/case-delivery-center.css';
+import bayMap from '../../assets/delivery-center-estimator/bay-map-94402.jpg';
+import usMap from '../../assets/delivery-center-estimator/us-map.jpg';
+import panel from '../../assets/delivery-center-estimator/panel-94402.png';
+import dashboard from '../../assets/delivery-center-estimator/dashboard-94402.png';
+import compare from '../../assets/delivery-center-estimator/compare-94402-78701.png';
+
+const home = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+const fpaCase = `${home}work/tesla-fpa-agent/`;
+
+// Every figure below is copied from the app's own screen (model version
+// 2026.11.9-compact-results) or from the estimator repository's docs.
+const steps = [
+  { title: 'Every US ZIP', detail: 'The app opens on a dark map of US ZIP boundaries. White dots are existing Tesla delivery centers, taken from Tesla’s public Find Us list. All 41,034 resolvable ZIP codes are precomputed, so a click reads a stored result.' },
+  { title: 'One ZIP and its catchment', detail: 'Selecting San Mateo 94402 shades its gravity catchment: the nearby ZIPs whose deliveries a new center would attract after sharing them with the existing centers (Huff model, distance decay β = 2, 60-mile cap).' },
+  { title: 'Cost per delivery', detail: '$619 per delivery on an estimated 5,565 deliveries a year: the annual cost of running the site, with capex spread straight-line, divided by the catchment’s deliveries.' },
+  { title: 'Top three cost drivers', detail: 'Labor 55%, lease 22% and capex 13% of annual cost. Wages come from BLS OEWS, rent from cited broker market reports, and fit-out from the DoD area cost factor for the county.' },
+  { title: 'Two cash-flow views', detail: 'A 10-year DCF at a 13.6% default discount rate. Standalone values the site on Tesla’s posted delivery fee: NPV $10.75M, IRR 63.6%. Incremental counts only what Tesla would save versus expanding an existing center: NPV −$3.39M.' },
+  { title: 'Low, base and high', detail: 'Scenarios move volume, wage, rent, fee, discount rate and horizon together. Standalone NPV is −$1.40M in the low case, $10.75M in the base case and $44.73M in the high case.' },
+];
+
+const sources = [
+  { name: 'Census ACS 5-year, 2024', use: 'Households, population, income, rent, home value and vehicles for every ZIP code tabulation area.', role: 'Demand and fallbacks' },
+  { name: 'Census ZIP geography', use: '2024 Gazetteer points, the 2020 ZCTA-to-county relationship file, CBSA delineations and 2020 ZCTA boundaries.', role: 'Crosswalk and map' },
+  { name: 'BLS OEWS, May 2025', use: 'Mean wage for automotive service technicians (SOC 49-3023) by metro area.', role: 'Labor cost' },
+  { name: 'California Energy Commission', use: 'New zero-emission vehicle sales by ZIP and county.', role: 'California demand' },
+  { name: 'EIA and utility tariffs', use: 'EIA-861 utility averages, EIA Electric Power Monthly state prices, and PG&E Schedule B-10.', role: 'Electricity' },
+  { name: 'Lincoln Institute', use: '50-State Property Tax Comparison Study, commercial class, taxes paid in 2024.', role: 'Property tax' },
+  { name: 'DoD area cost factors', use: 'UFS 3-701-01 construction area cost factors by county, with BEA Regional Price Parities as the fallback.', role: 'Fit-out cost' },
+  { name: 'Broker market reports', use: 'Cited headline asking rents from public Kidder Mathews and Cushman & Wakefield reports, then ACS rent fallbacks.', role: 'Lease cost' },
+  { name: 'Existing delivery centers', use: 'Tesla’s public Find Us list as archived by the Internet Archive, checked against All the Places and geocoded by the Census Bureau.', role: 'Competing centers' },
+];
+---
+<BaseLayout title="Delivery Center Estimator · Jacob Kambour" description="Jacob Kambour’s independent public-data project: a macOS app that estimates cost per delivery, a gravity catchment and a 10-year DCF for a delivery center in any US ZIP code.">
+  <Navigation current="work" />
+  <main id="main" class="dce">
+    <section class="dce-hero" data-sc-act="flow" aria-labelledby="dce-title">
+      <div class="dce-container dce-hero-grid">
+        <div class="dce-hero-copy">
+          <a class="dce-back" href={`${home}#work`}>← Back to projects</a>
+          <p class="dce-eyebrow">( 02 / INDEPENDENT PROJECT )</p>
+          <h1 id="dce-title">Delivery Center<br /><span>Estimator</span></h1>
+          <h2 class="dce-overview-label">Project overview</h2>
+          <p class="dce-lead">A macOS desktop app that answers one question: what if Tesla opens a delivery center in ZIP code X? It estimates cost per delivery, the top three cost drivers, the customer catchment and a 10-year cash flow, using public data only.</p>
+          <div class="dce-links">
+            <a class="dce-button" href="#reading">See it read a ZIP <span aria-hidden="true">↘</span></a>
+            <a class="dce-secondary" href="#how-it-works">How it works <span aria-hidden="true">↘</span></a>
+          </div>
+          <p class="dce-independence">Independent project using public data. Not affiliated with or endorsed by Tesla.</p>
+        </div>
+        <div class="dce-hero-art" aria-label="Captures from the Delivery Center Estimator app" role="group">
+          <div class="dce-plane dce-plane-map" data-sc-parallax="0.5">
+            <Image src={bayMap} alt="The app's dark map of the San Francisco Peninsula. ZIP 94402 in San Mateo is highlighted, and its catchment ZIPs are shaded lighter." widths={[640, 960, 1280]} sizes="(max-width: 860px) 100vw, 46vw" loading="eager" fetchpriority="high" />
+          </div>
+          <div class="dce-plane dce-plane-panel" data-sc-parallax="-0.9">
+            <Image src={panel} alt="The app's dashboard panel for 94402: $619 per delivery, 5,565 deliveries a year, cost drivers, standalone and incremental cash flow, and low, base and high scenarios." widths={[392, 784]} sizes="(max-width: 860px) 64vw, 300px" loading="eager" />
+          </div>
+          <div class="dce-plane dce-plane-note" data-sc-parallax="-1.6">
+            <span>94402 · SAN MATEO, CA</span>
+            <p>Model estimates from public data, as shown in the app.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dce-objective" data-sc-act="flow" aria-labelledby="objective-title">
+      <div class="dce-container dce-objective-grid">
+        <h2 id="objective-title">Project objective</h2>
+        <div>
+          <p class="dce-question">Where should the next delivery center go, and would it pay for itself?</p>
+          <div class="dce-prose">
+            <p>A delivery center sells nothing on its own. Cars are ordered online and the center hands them over, so the case for a site rests on how many customers it can reach, what it costs to run in that location, and how its value is measured.</p>
+            <p>The estimator turns that into a ZIP-level model. Type or click any US ZIP code and every input resolves automatically from bundled public data. Nothing has to be typed by hand.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dce-peak" id="reading" data-sc-act="pin" data-sc-span="5" aria-labelledby="reading-title">
+      <div class="dce-peak-stage" data-sc-stage data-step="0">
+        <div class="dce-container dce-peak-grid">
+          <div class="dce-peak-copy">
+            <p class="dce-eyebrow dce-eyebrow-dark">( READING ONE ZIP )</p>
+            <h2 id="reading-title">From every ZIP<br />to one decision</h2>
+            <ol class="dce-steps">
+              {steps.map((step, i) => (
+                <li data-index={i}>
+                  <span class="dce-step-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.detail}</p>
+                </li>
+              ))}
+            </ol>
+            <p class="dce-peak-note">Model estimates from public data, as displayed in the app.</p>
+          </div>
+          <div class="dce-peak-visual">
+            <figure class="dce-frame dce-frame-us">
+              <Image src={usMap} alt="The app's national map: ZIP code boundaries across the contiguous United States, with white dots for existing Tesla delivery centers." widths={[720, 1080, 1440]} sizes="(max-width: 860px) 100vw, 50vw" loading="lazy" />
+            </figure>
+            <figure class="dce-frame dce-frame-bay">
+              <Image src={bayMap} alt="The app's map after selecting 94402, with the gravity catchment ZIPs shaded around San Mateo." widths={[720, 1080, 1440]} sizes="(max-width: 860px) 100vw, 50vw" loading="lazy" />
+            </figure>
+            <figure class="dce-peak-panel">
+              <Image src={panel} alt="The 94402 dashboard panel: cost per delivery, deliveries a year, top three cost drivers, standalone and incremental cash flow, and low, base and high scenarios." widths={[392, 784]} sizes="(max-width: 860px) 86vw, 360px" loading="lazy" />
+              <span class="dce-mark dce-mark-2" aria-hidden="true"></span>
+              <span class="dce-mark dce-mark-3" aria-hidden="true"></span>
+              <span class="dce-mark dce-mark-4" aria-hidden="true"></span>
+              <span class="dce-mark dce-mark-5" aria-hidden="true"></span>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dce-process" id="how-it-works" data-sc-act="flow" aria-labelledby="process-title">
+      <div class="dce-container">
+        <div class="dce-section-head">
+          <h2 id="process-title">How it works</h2>
+          <p>Four deterministic steps, run for every ZIP before the app ships.</p>
+        </div>
+        <div class="dce-rule" aria-hidden="true"><span data-sc-reveal="left" data-sc-reveal-at="0.22 0.62"></span></div>
+        <div class="dce-process-steps">
+          <article><span>01</span><h3>Resolve the ZIP</h3><p>The ZIP maps to its county, metro area and ZIP tabulation area, which selects the local wage, rent, electricity rate, property tax and construction cost factor.</p></article>
+          <article><span>02</span><h3>Build the catchment</h3><p>A Huff gravity model allocates each nearby ZIP’s expected deliveries between the new site and existing Tesla delivery centers, using straight-line distance × 1.25 and a 60-mile cap.</p></article>
+          <article><span>03</span><h3>Cost the site</h3><p>Labor, lease, utilities, freight and fit-out for a 25,000-square-foot center give an annual cost, a cost per delivery and the top three cost drivers.</p></article>
+          <article><span>04</span><h3>Value it</h3><p>A 10-year DCF reports NPV, IRR, and simple and discounted payback in two views, then low, base and high scenarios and a one-driver-at-a-time NPV tornado.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="dce-sources" data-sc-act="pan" data-sc-span="2.8" aria-labelledby="sources-title">
+      <div class="dce-sources-stage" data-sc-stage>
+        <div class="dce-rail" data-sc-pan="0">
+          <div class="dce-rail-head">
+            <p class="dce-eyebrow">( INPUTS )</p>
+            <h2 id="sources-title">Public data sources</h2>
+            <p>Each ZIP’s inputs come from published government and public sources, bundled with the app in SQLite, each with its source and an as-of date.</p>
+          </div>
+          {sources.map((source) => (
+            <article class="dce-source">
+              <span class="dce-source-role">{source.role}</span>
+              <h3>{source.name}</h3>
+              <p>{source.use}</p>
+            </article>
+          ))}
+          <div class="dce-rail-end">
+            <p>No Tesla internal data. No scraped listing sites. No paid data services.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dce-compare" data-sc-act="flow" aria-labelledby="compare-title">
+      <div class="dce-container dce-compare-grid">
+        <div class="dce-compare-copy">
+          <h2 id="compare-title">Compare two ZIPs</h2>
+          <p>Compare mode puts two ZIP codes side by side and marks the better value in each row.</p>
+          <dl class="dce-compare-facts">
+            <div><dt>Cost per delivery</dt><dd>$619 <span>94402</span> · $683 <span>78701</span></dd></div>
+            <div><dt>Standalone NPV</dt><dd>$10.75M · $3.92M</dd></div>
+            <div><dt>Incremental NPV</dt><dd>−$3.39M · −$2.20M</dd></div>
+          </dl>
+          <p class="dce-small">San Mateo 94402 against downtown Austin 78701. Model estimates from public data, as displayed in the app. The standalone view favors San Mateo; neither ZIP is positive on the incremental view.</p>
+        </div>
+        <div class="dce-compare-visual">
+          <figure class="dce-wipe">
+            <Image class="dce-wipe-under" src={dashboard} alt="The app with the 94402 dashboard open beside the San Mateo map." widths={[720, 1080, 1440]} sizes="(max-width: 860px) 100vw, 60vw" loading="lazy" />
+            <div class="dce-wipe-over" data-sc-reveal="left" data-sc-reveal-at="0.3 0.62">
+              <Image src={compare} alt="The app's compare view for 94402 and 78701, with the better value marked on each metric row." widths={[720, 1080, 1440]} sizes="(max-width: 860px) 100vw, 60vw" loading="lazy" />
+            </div>
+          </figure>
+          <p class="dce-caption">Real captures of the app: the 94402 dashboard, then the 94402 vs 78701 comparison.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="dce-checked" aria-labelledby="checked-title">
+      <div class="dce-container dce-checked-grid">
+        <div>
+          <h2 id="checked-title">Built to be checked</h2>
+          <p class="dce-count"><span data-sc-count="0 41,034" data-sc-count-ms="1200">41,034</span></p>
+          <p class="dce-count-label">US ZIP codes precomputed in the nationwide build, with 0 errors.</p>
+        </div>
+        <ul class="dce-checks">
+          <li><h3>Deterministic</h3><p>The same inputs produce identical JSON results across runs and across processes. A determinism test checks it.</p></li>
+          <li><h3>Golden tests</h3><p>Frozen inputs and the shipped assumptions must reproduce stored expected outputs. The suite runs in CI with linting and type checks.</p></li>
+          <li><h3>No AI in the runtime path</h3><p>Every figure is ordinary Python. A test fails if the calculation, map or precompute code imports a language-model client.</p></li>
+          <li><h3>Offline desktop app</h3><p>Results and ZIP boundaries ship inside the app. Only basemap tiles are fetched online, and the map still draws without them.</p></li>
+        </ul>
+        <div class="dce-stack"><span>PROJECT TOOLS</span><p>Python · pandas · GeoPandas · SQLite · pywebview · MapLibre GL JS · PyInstaller</p></div>
+      </div>
+    </section>
+
+    <section class="dce-limits" data-sc-act="flow" aria-labelledby="limits-title">
+      <div class="dce-container dce-limits-grid">
+        <h2 id="limits-title">Accuracy &amp; limitations</h2>
+        <div class="dce-prose">
+          <p>These are model estimates from public data, not Tesla figures. No internal data is used, and the project is not affiliated with or endorsed by Tesla.</p>
+          <p>Distance is straight-line × 1.25 rather than drive-time routing, and every delivery center is treated as equally attractive. The center list is a 2024 archived snapshot checked against newer public data, so it is a lower bound on competing sites.</p>
+          <p>California demand comes from state ZEV sales; elsewhere a national total is allocated by ZIP. Sales are scaled by a handover factor of 1.10 in the base case (1.00 low, 1.30 high). The 1.10 and 1.30 are assumptions, because no public source counts used-vehicle handovers.</p>
+          <p>The incremental view depends on how capacity-constrained existing centers are, which is not public, so it is modelled as a range. The wage series is automotive service technicians, not a full delivery-role mix.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="dce-takeaway" id="about" aria-labelledby="takeaway-title">
+      <div class="dce-container">
+        <h2 id="takeaway-title">What the project demonstrates</h2>
+        <p>Turning an open siting question into a ZIP-level model: demand from a gravity catchment, unit costs from public data, a 10-year DCF with two views of value, scenario ranges and a sensitivity tornado, packaged as an offline desktop app with tests that keep every number reproducible.</p>
+      </div>
+    </section>
+
+    <footer class="dce-footer">
+      <div class="dce-container">
+        <p class="dce-eyebrow dce-eyebrow-dark">( CONTINUE EXPLORING )</p>
+        <h2>Project links</h2>
+        <div class="dce-links">
+          <a class="dce-button" href={fpaCase} target="_blank" rel="noopener noreferrer">Tesla FP&amp;A Agent case study <span aria-hidden="true">↗</span></a>
+          <a class="dce-secondary" href={home} target="_blank" rel="noopener noreferrer">Back to Jacob’s portfolio <span aria-hidden="true">↗</span></a>
+          <a class="dce-secondary" href="mailto:jkambour@gmail.com">Email Jacob <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="dce-independence">The estimator’s source code is private.</p>
+      </div>
+    </footer>
+  </main>
+  <script>
+    import '../../vendor/scrollcraft/scrollcraft.js';
+    const peak = document.querySelector<HTMLElement>('.dce-peak');
+    const stage = peak?.querySelector<HTMLElement>('.dce-peak-stage');
+    const live = window.matchMedia('(min-width: 861px) and (min-height: 640px) and (prefers-reduced-motion: no-preference)');
+    const clamp = (v: number) => Math.min(1, Math.max(0, v));
+    const ease = (v: number) => v * v * (3 - 2 * v);
+    // Step boundaries in act progress. Step 0 is the national map.
+    const bounds = [0, 0.14, 0.3, 0.46, 0.62, 0.78];
+    let frame = 0;
+    let visible = false;
+    const render = () => {
+      frame = 0;
+      if (!peak || !stage || !peak.classList.contains('is-live')) return;
+      const p = parseFloat(peak.style.getPropertyValue('--sc-p')) || 0;
+      const zoom = ease(clamp((p - 0.03) / 0.21));
+      const reveal = ease(clamp((p - 0.24) / 0.1));
+      let step = 0;
+      bounds.forEach((b, i) => { if (p >= b) step = i; });
+      stage.style.setProperty('--dce-zoom', zoom.toFixed(4));
+      stage.style.setProperty('--dce-panel', reveal.toFixed(4));
+      stage.style.setProperty('--dce-p', p.toFixed(4));
+      if (stage.dataset.step !== String(step)) stage.dataset.step = String(step);
+      stage.dataset.scVerifyState = `${step}|${zoom.toFixed(2)}|${reveal.toFixed(2)}`;
+      if (visible) frame = requestAnimationFrame(render);
+    };
+    // The layout is chosen once, before the engine collects acts. A static
+    // composition becomes a flow act so the engine never tries to pin it.
+    // Leaving the live range later (resize, motion setting) drops to static.
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const sources = document.querySelector<HTMLElement>('.dce-sources');
+    if (reduce.matches && sources) sources.setAttribute('data-sc-act', 'flow');
+    const startLive = live.matches;
+    const sync = () => {
+      if (!peak || !stage) return;
+      const on = startLive && live.matches;
+      peak.classList.toggle('is-live', on);
+      if (!on) {
+        stage.dataset.step = 'all';
+        stage.removeAttribute('data-sc-verify-state');
+      }
+    };
+    if (peak && !startLive) peak.setAttribute('data-sc-act', 'flow');
+    sync();
+    const craft = (window as unknown as { ScrollCraft: { mount: (root: HTMLElement) => void } }).ScrollCraft;
+    const main = document.querySelector<HTMLElement>('main');
+    if (main && craft) craft.mount(main);
+    live.addEventListener('change', () => { sync(); window.dispatchEvent(new Event('resize')); });
+    if (peak && 'IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        visible = entries.some((entry) => entry.isIntersecting);
+        if (visible && !frame) frame = requestAnimationFrame(render);
+      }).observe(peak);
+    }
+  </script>
+</BaseLayout>
