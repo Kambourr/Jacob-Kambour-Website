@@ -30,6 +30,7 @@ changes only grammar and world will fail it.
 |---|---|---|---|---|---|---|---|---|
 
 | portfolio-refinement | Factual portfolio exhibit | Existing collapsible right disclosure | Real dashboard + workflow note on drafting planes | Identity, credentials, project inspection, resume, about, contact | Named email plate | Selectable filings-to-commentary workflow inspector | Technical artifact | 4322 |
+| delivery-center-estimator | Annotated instrument case study (custom) | Existing collapsible right disclosure (shared with portfolio-refinement, required by scope) | Map plate + dashboard element cutout + ZIP label note at three parallax rates | Parallax, still flow, pinned drill-down (span 5), reveal connector, pan rail, wipe reveal, one-shot count, flow, links plate; 7 engine acts, 13.4 vh desktop | Project links plate on petrol | Scroll-driven ZIP drill-down: national ZIP map zooms to 94402, real dashboard slides in, reading frame walks its figures | Real app captures (technical artifact) | 4323 |
 
 ---
 
@@ -41,6 +42,7 @@ act-count-and-length band. The shared columns are what the next build inherits
 as a constraint, so writing them down is the whole point.
 
 - Real dashboard with independent workflow note; three-stage project inspector; natural-flow recruiter portfolio with compact right disclosure.
+- Country-to-ZIP drill-down over real map captures with a reading frame walking real dashboard figures; public-data source rail as a pan act; single-to-compare wipe.
 
 ---
 

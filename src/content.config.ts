@@ -49,8 +49,10 @@ const work = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		summary: z.string(),
-		href: httpsHref,
-		hrefLabel: z.string(),
+		// Optional: a project without a public destination (private repo, no
+		// live demo) links only to its local case study.
+		href: httpsHref.optional(),
+		hrefLabel: z.string().optional(),
 		image: z.string(),
 		tags: z.array(z.string()).default([]),
 		caseStudyPath: z.string().regex(/^work\/[a-z0-9-]+\/$/).optional(),
