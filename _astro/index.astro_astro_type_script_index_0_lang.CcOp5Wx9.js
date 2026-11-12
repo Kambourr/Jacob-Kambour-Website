@@ -1,1 +1,0 @@
-import"./scrollcraft.BZOtyyU1.js";var e=window.ScrollCraft,t=document.querySelector(`main`);t&&e&&e.mount(t);
