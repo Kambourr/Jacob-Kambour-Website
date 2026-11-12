@@ -1,10 +1,29 @@
-# Jacob Kambour — personal site
+# Jacob Kambour — personal website
 
-Short recruiter hub for FP&A / finance roles. Live Tesla FP&A work stays at [kambourr.github.io/tesla-fpa-agent](https://kambourr.github.io/tesla-fpa-agent/) and is linked from this site, not rebuilt here.
+**Live site: [kambourr.github.io/Jacob-Kambour-Website](https://kambourr.github.io/Jacob-Kambour-Website/)**
 
-Planning docs: `docs/BRIEF.md`, `docs/DECISIONS.md`, `docs/PROGRESS.md`, `docs/RESEARCH.md`.
+Portfolio of Jacob Kambour, an MS Finance and Analytics student at Santa Clara University focused on FP&A and financial analysis. The homepage puts experience, education and projects on one screen; below it, a terminal-style chart shows the Q3 2026 revenue bridge from the Tesla FP&A Agent.
+
+## Pages
+
+| Page | What it shows |
+| --- | --- |
+| [Home](https://kambourr.github.io/Jacob-Kambour-Website/) | Experience, education, projects and contact links |
+| [Projects](https://kambourr.github.io/Jacob-Kambour-Website/projects/) | Both projects in more detail |
+| [Tesla FP&A Agent](https://kambourr.github.io/Jacob-Kambour-Website/work/tesla-fpa-agent/) | Case study: forecasts and variance analysis from Tesla's public filings, with AI-written commentary checked against the source figures |
+| [Delivery Center Estimator](https://kambourr.github.io/Jacob-Kambour-Website/work/delivery-center-estimator/) | Case study: cost per delivery and 10-year returns for a delivery center in any US ZIP code, from public data |
+
+The live Tesla FP&A Agent dashboard is a separate project: [kambourr.github.io/tesla-fpa-agent](https://kambourr.github.io/tesla-fpa-agent/).
+
+Both projects are independent work built from public data. They are not affiliated with or endorsed by Tesla.
+
+## Built with
+
+[Astro](https://astro.build/) static site generator and TypeScript, with plain CSS. No client framework. Hosted on GitHub Pages.
 
 ## Run locally
+
+Requires Node 22.12 or later.
 
 ```sh
 npm install
@@ -13,20 +32,23 @@ npm run dev
 
 | Command | Action |
 | --- | --- |
-| `npm run dev` | Local server |
-| `npm run build` | Static output in `dist/` |
+| `npm run dev` | Start a local dev server |
+| `npm run build` | Build the static site into `dist/` |
 | `npm run preview` | Preview the production build |
-| `npm run check` | Typecheck |
+| `npm run check` | Type-check the project |
 
-Requires Node 22+.
+## Project structure
 
-## Edit copy
+- `src/pages/` — the homepage, Projects page and case studies
+- `src/content/` — site text in YAML (`site.yaml`, `experience.yaml`, `education.yaml`, `work.yaml`), validated by `src/content.config.ts`
+- `src/components/`, `src/layouts/`, `src/styles/` — shared navigation, page layout and styles
+- `src/assets/` — project screenshots, optimized at build time
+- `DESIGN.md`, `docs/` — design notes
 
-Homepage text lives in YAML, not in the layout:
+## Deployment
 
-- `src/content/site.yaml` — name, hero line, about, profile links, contact
-- `src/content/work.yaml` — selected work
-- `src/content/experience.yaml` — roles
-- `src/content/education.yaml` — degrees
+The site is built with `npm run build`, and the contents of `dist/` are published to the `gh-pages` branch, which GitHub Pages serves.
 
-Do **not** add street address, phone, a résumé file, GPA, Tesla Hillsdale operational numbers, or a link to `kambourr.github.io/hillsdale-study`. The only public email on this hub is `jkambour@gmail.com`.
+## Contact
+
+[jkambour@gmail.com](mailto:jkambour@gmail.com) · [LinkedIn](https://www.linkedin.com/in/jacob-kambour-5558a2221/) · [GitHub](https://github.com/Kambourr)
