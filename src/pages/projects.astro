@@ -22,7 +22,7 @@ const projectImages = import.meta.glob<{ default: ImageMetadata }>('../assets/*.
         </div>
         <div class="projects-hero-copy">
           <p>Personal projects in financial modeling, data analysis, and AI. Each one has a full case study.</p>
-          <p class="projects-independence">Independent projects using public data. Not affiliated with or endorsed by Tesla.</p>
+          <p class="projects-independence">Independent projects using public data or illustrative numbers. Not affiliated with or endorsed by Tesla or Applied Materials.</p>
           <nav class="projects-index" aria-label="Projects on this page">
             {work.map((item) => <a href={`#${item.id}`}><span>{item.data.title}</span><span aria-hidden="true">↘</span></a>)}
           </nav>
