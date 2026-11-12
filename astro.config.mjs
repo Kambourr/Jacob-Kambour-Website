@@ -7,6 +7,11 @@ export default defineConfig({
 	site: 'https://kambourr.github.io',
 	base: '/Jacob-Kambour-Website',
 	trailingSlash: 'always',
+	// The one-screen homepage was previewed at /v2/ before it replaced the old homepage.
+	redirects: {
+		// Destinations are not base-prefixed by Astro, so include the base here.
+		'/v2/': '/Jacob-Kambour-Website/',
+	},
 	fonts: [
 		{
 			provider: fontProviders.google(),
