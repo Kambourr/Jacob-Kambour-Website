@@ -2,11 +2,15 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navigation from '../../components/Navigation.astro';
 import '../../styles/case-etch-portfolio.css';
+import { Image } from 'astro:assets';
+import builderShot from '../../assets/etch-builder.png';
 import data from '../../data/etch-model.json';
 
 const home = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 const fpaCase = `${home}work/tesla-fpa-agent/`;
 const dceCase = `${home}work/delivery-center-estimator/`;
+const appUrl = 'https://kambourr.github.io/etch-spend-forecast-app/';
+const appRepo = 'https://github.com/Kambourr/etch-spend-forecast-app';
 
 // Every number on this page comes from data/etch-model.json, which is read from the
 // calculated workbook (Etch_Portfolio_Spend_Forecast_v3.xlsx) for each scenario with
@@ -133,7 +137,7 @@ const panels = [
   { tag: '06 · MODEL CHECKS', title: 'Eleven tests, shown on the Summary tab', body: checksHTML(base) },
 ];
 ---
-<BaseLayout title="Etch Portfolio Spend Forecast · Jacob Kambour" description="Jacob Kambour’s independent project: an Excel model that forecasts Opex and Capex for three illustrative Etch R&D programs, bridges the forecast to the budget, tests a funding cut and a schedule slip, and checks itself.">
+<BaseLayout title="Etch Portfolio Spend Forecast · Jacob Kambour" description="Jacob Kambour’s independent project: an Excel model that forecasts Opex and Capex for three illustrative Etch R&D programs, bridges the forecast to the budget, tests a funding cut and a schedule slip, and checks itself. A companion web app builds the same forecast from your own inputs and exports it to Excel.">
   <Navigation current="work" />
   <main id="main" class="etp">
     <section class="etp-hero" data-sc-act="flow" aria-labelledby="etp-title">
@@ -143,10 +147,11 @@ const panels = [
           <p class="etp-eyebrow">( 03 / INDEPENDENT PROJECT )</p>
           <h1 id="etp-title">Etch Portfolio<br /><span>Spend Forecast</span></h1>
           <h2 class="etp-overview-label">Project overview</h2>
-          <p class="etp-lead">An Excel model that answers one question: how much will three Etch R&amp;D programs spend in fiscal 2027, and how does that compare with the budget? It splits spend into Opex and Capex, tests a funding cut and a schedule slip, shows how Capex becomes depreciation, and checks itself.</p>
+          <p class="etp-lead">An Excel model that answers one question: how much will three Etch R&amp;D programs spend in fiscal 2027, and how does that compare with the budget? It splits spend into Opex and Capex, tests a funding cut and a schedule slip, shows how Capex becomes depreciation, and checks itself. A companion web app builds the same forecast from your own programs and AOP and exports it to Excel.</p>
           <div class="etp-links">
             <a class="etp-button" href="#reading">See it read a scenario <span aria-hidden="true">↘</span></a>
             <a class="etp-secondary" href="#how-it-works">How it works <span aria-hidden="true">↘</span></a>
+            <a class="etp-secondary" href="#builder">Try the builder <span aria-hidden="true">↘</span></a>
           </div>
           <p class="etp-independence">Independent project with illustrative numbers. Not Applied Materials data. Not affiliated with or endorsed by Applied Materials.</p>
         </div>
@@ -284,6 +289,33 @@ const panels = [
       </div>
     </section>
 
+    <section class="etp-app" id="builder" aria-labelledby="builder-title">
+      <div class="etp-container etp-app-grid">
+        <div class="etp-app-copy">
+          <p class="etp-eyebrow">( THE APP )</p>
+          <h2 id="builder-title">Try it with your own numbers</h2>
+          <p class="etp-app-lede">The Excel model is one example. The Etch Spend Forecast Builder is a web app that runs the same calculations on whatever you enter, so the forecast can be generated for any set of programs, then exported to Excel.</p>
+          <ol class="etp-app-steps">
+            <li><b>Enter the plan.</b> Add or remove programs. For each one, set starting headcount, cost per person, hires, materials, tool builds and Capex as annual totals with a phasing, or edit any month.</li>
+            <li><b>Set the AOP and actuals.</b> Type the budget, or fill it from the plan plus a cushion. Choose how many months are closed and enter their actuals.</li>
+            <li><b>Read the result as you type.</b> Forecast against AOP, a bridge by line, monthly spend, Capex turning into depreciation, a sensitivity grid and 11 model checks, for Base, Funding Cut, Schedule Slip or all three side by side.</li>
+            <li><b>Export to Excel.</b> One click downloads a six-tab workbook with live formulas built from your inputs.</li>
+          </ol>
+          <div class="etp-links">
+            <a class="etp-button etp-button-dark" href={appUrl} target="_blank" rel="noopener noreferrer">Open the builder <span aria-hidden="true">↗</span></a>
+            <a class="etp-secondary etp-secondary-dark" href={appRepo} target="_blank" rel="noopener noreferrer">View the code on GitHub <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="etp-small">It loads with the Etch example, so it works in one click. It runs in your browser and nothing is uploaded. Illustrative numbers.</p>
+        </div>
+        <div class="etp-app-visual">
+          <a class="etp-app-shot" href={appUrl} target="_blank" rel="noopener noreferrer" aria-label="Open the Etch Spend Forecast Builder">
+            <Image src={builderShot} alt="The Etch Spend Forecast Builder with the Etch example loaded: program and driver inputs on the left, and on the right a $60.2M forecast against a $62.0M AOP, a bridge chart, monthly spend and Capex depreciation charts." widths={[720, 1080, 1440]} sizes="(max-width: 860px) 100vw, 56vw" loading="lazy" />
+          </a>
+          <p class="etp-caption">The builder with the Etch example loaded. Its calculations reproduce the workbook above for all three scenarios.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="etp-checked" aria-labelledby="checked-title">
       <div class="etp-container etp-checked-grid">
         <div>
@@ -295,7 +327,7 @@ const panels = [
           <li><h3>Self-checking</h3><p>Each check is a difference that should be zero: closed months equal actuals, the bridge adds up to the forecast, quarters add up to the year, and depreciation rolls forward.</p></li>
           <li><h3>Catches mistakes</h3><p>If months closed is set above the three months of actuals typed in, the panel flags the months with no actuals instead of quietly understating spend.</p></li>
           <li><h3>Tied to the earlier version</h3><p>After the workbook was restructured into six tabs, its values were compared with the earlier version. Everything matched except two labels changed on purpose.</p></li>
-          <li><h3>No formula errors</h3><p>The workbook was recalculated with an independent formula engine in all three scenarios, and with 0 and 12 months closed. It returned zero formula errors.</p></li>
+          <li><h3>No formula errors</h3><p>The workbook, and workbooks exported from the app with 2, 3 and 4 programs, were recalculated with an independent formula engine in every scenario and with different months closed. Zero formula errors.</p></li>
         </ul>
         <div class="etp-stack"><span>PROJECT TOOLS</span><p>Excel · INDEX and MATCH · SUMPRODUCT · Python (openpyxl and matplotlib) for the build and the one-page summary</p></div>
       </div>
@@ -308,6 +340,7 @@ const panels = [
           <p>Every number is an illustrative assumption informed by public industry context. None of it is Applied Materials data, and the project is not affiliated with or endorsed by Applied Materials.</p>
           <p>The AOP is a typed budget, so it differs from the driver-based plan: {M1(base.aop)} against about {M1(data.sens.grid[0][0])}. The sensitivity grid is a plan view that ignores actuals.</p>
           <p>A schedule slip is modeled as a pure shift of the plan. The first three open months pull from closed months, so they get no new materials, tool builds or Capex. A real slip would likely keep some spend.</p>
+          <p>The builder app uses the same logic in the browser, with actuals entered as numbers for closed months rather than loaded from a ledger. Its exported workbook has live formulas but no charts, and its sensitivity tab holds values from the moment of export.</p>
           <p>Depreciation is a straight-line illustration, with a 5-year life and a 2-month start delay. It is a memo and is not in the Opex totals. Only November to January have actuals. The model leaves out accruals and open purchase orders, allocations of shared costs, contractors, travel, attrition and merit raises.</p>
         </div>
       </div>
@@ -325,7 +358,8 @@ const panels = [
         <p class="etp-eyebrow etp-eyebrow-dark">( CONTINUE EXPLORING )</p>
         <h2>Project links</h2>
         <div class="etp-links">
-          <a class="etp-button" href={dceCase} target="_blank" rel="noopener noreferrer">Delivery Center Estimator case study <span aria-hidden="true">↗</span></a>
+          <a class="etp-button" href={appUrl} target="_blank" rel="noopener noreferrer">Etch Spend Forecast Builder <span aria-hidden="true">↗</span></a>
+          <a class="etp-secondary" href={dceCase} target="_blank" rel="noopener noreferrer">Delivery Center Estimator case study <span aria-hidden="true">↗</span></a>
           <a class="etp-secondary" href={fpaCase} target="_blank" rel="noopener noreferrer">Tesla FP&amp;A Agent case study <span aria-hidden="true">↗</span></a>
           <a class="etp-secondary" href={home} target="_blank" rel="noopener noreferrer">Back to Jacob’s portfolio <span aria-hidden="true">↗</span></a>
           <a class="etp-secondary" href="mailto:jkambour@gmail.com">Email Jacob <span aria-hidden="true">↗</span></a>

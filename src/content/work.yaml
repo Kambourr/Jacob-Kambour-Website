@@ -40,13 +40,14 @@
 - id: etch-portfolio-forecast
   title: Etch Portfolio Spend Forecast
   tagline: >-
-    A tool that forecasts Opex and Capex for three Etch R&D programs, bridges
-    the forecast to the budget, and checks itself, using illustrative numbers.
+    A tool that builds an Opex and Capex forecast for Etch R&D programs from
+    your inputs, bridges it to the budget, and exports Excel. Illustrative data.
   summary: >-
-    An Excel model that forecasts a fiscal year of Opex and Capex for three
-    illustrative Etch programs, blends actuals into a rolling forecast,
-    bridges it to the budget, tests a funding cut and a schedule slip, follows
-    Capex into depreciation, and runs 11 checks on itself.
+    An Excel model and a web app that forecast a fiscal year of Opex and Capex
+    for Etch R&D programs. Enter programs, drivers, an AOP and actuals, and it
+    blends a rolling forecast, bridges it to the budget, tests a funding cut
+    and a schedule slip, follows Capex into depreciation, runs 11 checks, and
+    exports a live-formula Excel workbook. Illustrative numbers.
   image: etch-portfolio-forecast.png
   tags: [Financial modeling, Excel]
   caseStudyPath: work/etch-portfolio-forecast/
