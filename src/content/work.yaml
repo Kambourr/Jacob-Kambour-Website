@@ -37,3 +37,22 @@
     and a dashboard showing $619 per delivery, 5,565 deliveries a year, cost
     drivers and cash flow. Model estimates from public data.
   order: 2
+- id: etch-portfolio-forecast
+  title: Etch Portfolio Spend Forecast
+  tagline: >-
+    A tool that forecasts Opex and Capex for three Etch R&D programs, bridges
+    the forecast to the budget, and checks itself, using illustrative numbers.
+  summary: >-
+    An Excel model that forecasts a fiscal year of Opex and Capex for three
+    illustrative Etch programs, blends actuals into a rolling forecast,
+    bridges it to the budget, tests a funding cut and a schedule slip, follows
+    Capex into depreciation, and runs 11 checks on itself.
+  image: etch-portfolio-forecast.png
+  tags: [Financial modeling, Excel]
+  caseStudyPath: work/etch-portfolio-forecast/
+  imageAlt: >-
+    Chart from the model: a bridge from the $61.97M annual operating plan to
+    the $60.23M Base forecast by line, next to a card showing a $60.2M FY27
+    forecast, $1.7M under plan, with all 11 model checks passing. Illustrative
+    data.
+  order: 3

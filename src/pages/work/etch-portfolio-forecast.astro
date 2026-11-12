@@ -1,0 +1,399 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import '../../styles/case-etch-portfolio.css';
+import data from '../../data/etch-model.json';
+
+const home = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+const fpaCase = `${home}work/tesla-fpa-agent/`;
+const dceCase = `${home}work/delivery-center-estimator/`;
+
+// Every number on this page comes from data/etch-model.json, which is read from the
+// calculated workbook (Etch_Portfolio_Spend_Forecast_v3.xlsx) for each scenario with
+// three fiscal months closed. Nothing is typed in by hand.
+const S: any = data.scenarios;
+const base = S.base, cut = S.cut, slip = S.slip;
+const months: string[] = data.months;
+const mAbbr = months.map((m) => m.split('-')[0]);
+const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const M1 = (k: number) => `$${(k / 1000).toFixed(1)}M`;
+const M2 = (k: number) => `$${(k / 1000).toFixed(2)}M`;
+const SM2 = (k: number) => `${k >= 0 ? '+' : '−'}$${Math.abs(k / 1000).toFixed(2)}M`;
+const P1 = (p: number) => `${(Math.abs(p) * 100).toFixed(1)}%`;
+const K0 = (k: number) => `$${Math.round(k).toLocaleString('en-US')}K`;
+const pick = (arr: number[], raw: number, n = 5) => arr.find((s) => raw / s <= n) ?? arr[arr.length - 1];
+
+function lineChart(sc: any, label: string) {
+  const W = 640, H = 300, l = 46, r = 12, t = 30, b = 34;
+  const max = Math.max(...sc.aop_m, ...sc.fc_m);
+  const step = pick([500, 1000, 2000, 2500, 5000], max * 1.05);
+  const top = Math.ceil((max * 1.05) / step) * step;
+  const cw = (W - l - r) / 12;
+  const x = (i: number) => l + (i + 0.5) * cw;
+  const y = (v: number) => t + (1 - v / top) * (H - t - b);
+  let g = '';
+  for (let v = 0; v <= top; v += step) g += `<line class="g" x1="${l}" x2="${W - r}" y1="${y(v)}" y2="${y(v)}"/><text class="ax" x="${l - 8}" y="${y(v) + 4}" text-anchor="end">$${v / 1000}M</text>`;
+  const shade = `<rect class="shade" x="${l}" y="${t}" width="${cw * data.closed}" height="${H - t - b}"/><text class="ax tag" x="${l + 8}" y="${t + 14}">ACTUALS</text>`;
+  const pts = (arr: number[]) => arr.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+  const dots = sc.fc_m.map((v: number, i: number) => `<circle class="${i < data.closed ? 'dot act' : 'dot'}" cx="${x(i).toFixed(1)}" cy="${y(v).toFixed(1)}" r="4"/>`).join('');
+  const xl = mAbbr.map((m, i) => `<text class="ax" x="${x(i).toFixed(1)}" y="${H - 12}" text-anchor="middle">${m}</text>`).join('');
+  const legend = `<g transform="translate(${W - 214},10)"><line class="aop" x1="0" x2="22" y1="0" y2="0"/><text class="ax" x="28" y="4">AOP</text><line class="fc" x1="70" x2="92" y1="0" y2="0"/><text class="ax" x="98" y="4">Forecast of record</text></g>`;
+  return `<svg class="etp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(label)}">${shade}${g}<polyline class="aop" points="${pts(sc.aop_m)}"/><polyline class="fc" points="${pts(sc.fc_m)}"/>${dots}${xl}${legend}</svg>`;
+}
+
+function waterfall(sc: any, label: string) {
+  const W = 640, H = 300, t = 34, b = 40, l = 16, r = 16;
+  const names = ['AOP', 'Headcount', 'Materials', 'Eval tools', 'Capex', 'Forecast'];
+  const runs: number[] = sc.bridge.map((x: any) => x.run);
+  const lo = Math.floor((Math.min(...runs) - 1500) / 1000) * 1000;
+  const hi = Math.max(...runs) + 1000;
+  const y = (v: number) => t + (1 - (v - lo) / (hi - lo)) * (H - t - b);
+  const slot = (W - l - r) / 6, bw = 62;
+  const cx = (i: number) => l + (i + 0.5) * slot;
+  let s = '';
+  sc.bridge.forEach((st: any, i: number) => {
+    const total = i === 0 || i === 5;
+    if (total) {
+      const v = st.run;
+      s += `<rect class="bar total" x="${cx(i) - bw / 2}" y="${y(v)}" width="${bw}" height="${y(lo) - y(v)}"/><text class="val" x="${cx(i)}" y="${y(v) - 8}" text-anchor="middle">${M2(v)}</text>`;
+    } else {
+      const prev = sc.bridge[i - 1].run, now = st.run;
+      const cls = Math.abs(st.change) < 0.5 ? 'bar flat' : st.change < 0 ? 'bar fav' : 'bar unf';
+      const yt = y(Math.max(prev, now)), yb = y(Math.min(prev, now));
+      s += `<rect class="${cls}" x="${cx(i) - bw / 2}" y="${yt}" width="${bw}" height="${Math.max(yb - yt, 1.5)}"/>`;
+      const txt = Math.abs(st.change) < 0.5 ? '$0' : SM2(st.change);
+      s += `<text class="val" x="${cx(i)}" y="${yt - 8}" text-anchor="middle">${txt}</text>`;
+    }
+    if (i < 5) s += `<line class="link" x1="${cx(i) + bw / 2}" x2="${cx(i + 1) - bw / 2}" y1="${y(st.run)}" y2="${y(st.run)}"/>`;
+    s += `<text class="ax" x="${cx(i)}" y="${H - 18}" text-anchor="middle">${names[i]}</text>`;
+  });
+  s += `<text class="ax note" x="${l}" y="14">Axis starts at $${lo / 1000}M. Change in spend vs AOP, by line.</text>`;
+  return `<svg class="etp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(label)}">${s}</svg>`;
+}
+
+function capexChart(sc: any, label: string) {
+  const W = 640, H = 300, l = 50, r = 54, t = 30, b = 34;
+  const cmax = Math.max(...sc.capex_m), dmax = Math.max(...sc.dep_m);
+  const sl = pick([100, 200, 250, 500, 1000], cmax * 1.05), L = sl * 5;
+  const sd = pick([5, 10, 20, 25, 50, 100], dmax * 1.05), D = sd * 5;
+  const cw = (W - l - r) / 12, x = (i: number) => l + (i + 0.5) * cw;
+  const yl = (v: number) => t + (1 - v / L) * (H - t - b), yd = (v: number) => t + (1 - v / D) * (H - t - b);
+  let g = '';
+  for (let i = 0; i <= 5; i++) g += `<line class="g" x1="${l}" x2="${W - r}" y1="${yl(sl * i)}" y2="${yl(sl * i)}"/><text class="ax" x="${l - 8}" y="${yl(sl * i) + 4}" text-anchor="end">$${(sl * i) / 1000}M</text><text class="ax" x="${W - r + 8}" y="${yl(sl * i) + 4}">$${sd * i}K</text>`;
+  const bars = sc.capex_m.map((v: number, i: number) => (v > 0 ? `<rect class="bar capex" x="${x(i) - cw * 0.3}" y="${yl(v)}" width="${cw * 0.6}" height="${yl(0) - yl(v)}"/>` : '')).join('');
+  const line = `<polyline class="fc" points="${sc.dep_m.map((v: number, i: number) => `${x(i).toFixed(1)},${yd(v).toFixed(1)}`).join(' ')}"/>`;
+  const xl = mAbbr.map((m, i) => `<text class="ax" x="${x(i).toFixed(1)}" y="${H - 12}" text-anchor="middle">${m}</text>`).join('');
+  const legend = `<g transform="translate(${l},12)"><rect class="bar capex" x="0" y="-6" width="14" height="10"/><text class="ax" x="20" y="4">Capex spent (left)</text><line class="fc" x1="170" x2="192" y1="0" y2="0"/><text class="ax" x="198" y="4">Depreciation (right)</text></g>`;
+  return `<svg class="etp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(label)}">${g}${bars}${line}${xl}${legend}</svg>`;
+}
+
+const baseLine = lineChart(base, 'Monthly total spend, AOP versus forecast of record, Base scenario. November to January are actuals.');
+const baseWater = waterfall(base, 'Bridge from the AOP to the Base forecast by line: headcount, materials, eval tools and Capex.');
+const baseCapex = capexChart(base, 'Monthly Capex spent and the depreciation it creates, Base scenario.');
+const scnViews = [
+  { id: 'base', sc: base, name: 'Base', levers: 'No levers pulled. Open months follow the driver plan, and the first three months use actuals.' },
+  { id: 'cut', sc: cut, name: 'Funding Cut', levers: 'Hiring at 50%, materials down 15%, eval tools down 25% and Capex down 30% in open months.' },
+  { id: 'slip', sc: slip, name: 'Schedule Slip', levers: `Open-month spend moves three months later. It is timing, not savings: about ${M1(base.fc - slip.fc)} moves out of FY27 and into FY28.` },
+];
+
+const steps = [
+  { title: 'Three programs, one switch', detail: 'Conductor Etch (GAA logic), Selective Etch and Dielectric HAR Etch (memory) start at 95 full-time equivalents (FTE). Monthly drivers cover hires, materials, tool builds and Capex. One drop-down picks Base, Funding Cut or Schedule Slip.' },
+  { title: 'Drivers become spend', detail: 'Headcount cost is FTE × loaded cost ÷ 12: 40 × $260K ÷ 12 = $866.7K a month for Conductor Etch in November. Materials, tool builds and Capex follow the monthly plan, scaled by the scenario levers. A slip moves open-month spend later.' },
+  { title: 'Actuals replace closed months', detail: 'November to January are closed, so booked results replace the forecast for those months and the rest stays forecast. That blend is a rolling forecast, the version everyone reports against.' },
+  { title: 'The bridge to the budget', detail: `Base forecast is ${M1(base.fc)} against a ${M1(base.aop)} annual operating plan (AOP), ${M2(base.var)} or ${P1(base.pct)} favorable. Capex is ${M2(-base.bridge[4].change)} under, headcount ${M2(-base.bridge[1].change)} under, and materials ${M2(base.bridge[2].change)} over. Materials and Capex are flagged for review.` },
+  { title: 'Capex becomes depreciation', detail: `${M2(base.capex)} of Capex adds ${M2(base.dep)} of depreciation in FY27 and ${M2(base.runrate)} a year once it is all in service. The 5-year life and 2-month start delay are illustrative. It is a memo and is not in the Opex totals.` },
+  { title: 'Eleven checks', detail: 'A panel runs 11 tests, such as closed months equal actuals and the bridge adds up to the forecast, and shows ALL PASS or CHECK. Every number can be traced to a formula or to a boxed input.' },
+];
+
+const tabs = [
+  { role: 'Results', name: 'Summary', use: 'Key numbers, a read-out that rewrites itself for the chosen scenario, the AOP-to-forecast bridge, charts and the checks panel.' },
+  { role: 'Assumptions', name: 'Inputs', use: 'The scenario switch, months closed, levers, program and depreciation assumptions, the monthly driver plan and review thresholds.' },
+  { role: 'Plan and actuals', name: 'Plan_vs_Actual', use: 'The locked AOP, booked actuals and the variance by program and line, with F or U and Review flags, plus a quarterly view.' },
+  { role: 'Engine', name: 'Model', use: 'The driver-based scenario forecast, the forecast of record that blends in actuals, and the Capex depreciation schedule.' },
+  { role: 'What-if', name: 'Sensitivity', use: 'A grid of funding cut against schedule slip for total spend and variance to AOP, plus a reconciliation check.' },
+  { role: 'Reporting data', name: 'Data', use: 'A tidy table with one row per program, line and month, ready for a pivot table, Tableau or Power BI.' },
+];
+
+const inputsHTML = `<div class="etp-mini"><table><caption>Scenario levers (Inputs tab)</caption><thead><tr><th></th><th>Base</th><th>Funding Cut</th><th>Schedule Slip</th></tr></thead><tbody>${data.levers.map((r: any[]) => {
+  const pctRow = String(r[0]).includes('%');
+  const f = (v: number) => (pctRow ? `${Math.round(v * 100)}%` : `${v}`);
+  return `<tr><th>${esc(String(r[0]))}</th><td>${f(r[1])}</td><td>${f(r[2])}</td><td>${f(r[3])}</td></tr>`;
+}).join('')}</tbody></table><table><caption>Program assumptions</caption><thead><tr><th>Program</th><th>FTE</th><th>Loaded cost</th><th>Life</th></tr></thead><tbody>${data.programs_in.map((p: any[]) => `<tr><th>${esc(String(p[0]))}</th><td>${p[1]}</td><td>$${p[2]}K</td><td>${p[4]} yr</td></tr>`).join('')}</tbody></table></div>`;
+
+const formulaHTML = `<div class="etp-eq"><p class="etp-eq-label">HEADCOUNT COST</p><p class="etp-eq-main">Ending FTE × loaded cost ÷ 12</p><p class="etp-eq-ex">Nov: 40 × $260K ÷ 12 = <b>$866.7K</b><br/>Dec: 42 × $260K ÷ 12 = <b>$910.0K</b> (two hires land)</p><p class="etp-eq-label">OTHER LINES</p><p class="etp-eq-main">Plan × (1 − cut)</p><p class="etp-eq-ex">Funding Cut: materials × 0.85, eval tools × 0.75, Capex × 0.70</p><p class="etp-eq-label">SCHEDULE SLIP</p><p class="etp-eq-main">Driver month = month − slip</p><p class="etp-eq-ex">Closed months never move. Slipped months pulling from a closed month get $0 of new spend.</p></div>`;
+
+const checksHTML = (sc: any) => `<ul class="etp-checks-list">${sc.checks.map((c: any) => `<li><span>${esc(c.label)}</span><b class="${c.status === 'OK' ? 'ok' : 'bad'}">${c.status}</b></li>`).join('')}</ul><p class="etp-checks-total">${sc.overall}</p>`;
+
+const panels = [
+  { tag: '01 · INPUTS', title: 'One switch, three programs', body: inputsHTML },
+  { tag: '02 · DRIVERS TO SPEND', title: 'The three formulas that do the work', body: formulaHTML },
+  { tag: '03 · ROLLING FORECAST', title: 'Total spend by month: AOP vs forecast of record', body: baseLine },
+  { tag: '04 · BRIDGE', title: 'From the AOP to the Base forecast', body: baseWater },
+  { tag: '05 · CAPEX TO DEPRECIATION', title: 'Capex this year, depreciation it creates', body: baseCapex },
+  { tag: '06 · MODEL CHECKS', title: 'Eleven tests, shown on the Summary tab', body: checksHTML(base) },
+];
+---
+<BaseLayout title="Etch Portfolio Spend Forecast · Jacob Kambour" description="Jacob Kambour’s independent project: an Excel model that forecasts Opex and Capex for three illustrative Etch R&D programs, bridges the forecast to the budget, tests a funding cut and a schedule slip, and checks itself.">
+  <Navigation current="work" />
+  <main id="main" class="etp">
+    <section class="etp-hero" data-sc-act="flow" aria-labelledby="etp-title">
+      <div class="etp-container etp-hero-grid">
+        <div class="etp-hero-copy">
+          <a class="etp-back" href={`${home}projects/`}>← Back to projects</a>
+          <p class="etp-eyebrow">( 03 / INDEPENDENT PROJECT )</p>
+          <h1 id="etp-title">Etch Portfolio<br /><span>Spend Forecast</span></h1>
+          <h2 class="etp-overview-label">Project overview</h2>
+          <p class="etp-lead">An Excel model that answers one question: how much will three Etch R&amp;D programs spend in fiscal 2027, and how does that compare with the budget? It splits spend into Opex and Capex, tests a funding cut and a schedule slip, shows how Capex becomes depreciation, and checks itself.</p>
+          <div class="etp-links">
+            <a class="etp-button" href="#reading">See it read a scenario <span aria-hidden="true">↘</span></a>
+            <a class="etp-secondary" href="#how-it-works">How it works <span aria-hidden="true">↘</span></a>
+          </div>
+          <p class="etp-independence">Independent project with illustrative numbers. Not Applied Materials data. Not affiliated with or endorsed by Applied Materials.</p>
+        </div>
+        <div class="etp-hero-art" aria-label="Charts and numbers from the workbook" role="group">
+          <div class="etp-plane etp-plane-chart etp-dark-chart" data-sc-parallax="0.5">
+            <p class="etp-plane-title">AOP to forecast bridge · Base</p>
+            <Fragment set:html={baseWater} />
+          </div>
+          <div class="etp-plane etp-plane-kpi" data-sc-parallax="-0.9">
+            <p class="etp-kpi-label">FY27 FORECAST</p>
+            <p class="etp-kpi-value">{M1(base.fc)}</p>
+            <p class="etp-kpi-sub">against a {M1(base.aop)} AOP</p>
+            <p class="etp-kpi-pill">{M1(base.var)} under plan · {P1(base.pct)}</p>
+            <p class="etp-kpi-sub">{base.overall} · 11 model checks</p>
+          </div>
+          <div class="etp-plane etp-plane-note" data-sc-parallax="-1.6">
+            <span>BASE SCENARIO · 3 MONTHS CLOSED</span>
+            <p>Illustrative numbers, as calculated by the workbook.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="etp-objective" data-sc-act="flow" aria-labelledby="objective-title">
+      <div class="etp-container etp-objective-grid">
+        <h2 id="objective-title">Project objective</h2>
+        <div>
+          <p class="etp-question">How much will three Etch programs spend this year, and where will it differ from the plan?</p>
+          <div class="etp-prose">
+            <p>Etch is the chip-making step that carves a circuit pattern into a silicon wafer. The model covers three illustrative programs: Conductor Etch for GAA (gate-all-around) logic transistors, Selective Etch, and Dielectric HAR (high aspect ratio) Etch for memory. Each spends money on people, materials, prototype and evaluation tools, and long-lived equipment.</p>
+            <p>The first three are Opex (operating expenses) and the last is Capex (capital expenditures). The model keeps them apart, compares the forecast with the locked budget, and follows Capex forward into depreciation, because today’s Capex becomes tomorrow’s Opex.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="etp-peak" id="reading" data-sc-act="pin" data-sc-span="5" aria-labelledby="reading-title">
+      <div class="etp-peak-stage" data-sc-stage data-step="0">
+        <div class="etp-container etp-peak-grid">
+          <div class="etp-peak-copy">
+            <p class="etp-eyebrow etp-eyebrow-dark">( READING ONE SCENARIO )</p>
+            <h2 id="reading-title">From drivers<br />to one decision</h2>
+            <ol class="etp-steps">
+              {steps.map((step, i) => (
+                <li data-index={i}>
+                  <span class="etp-step-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.detail}</p>
+                </li>
+              ))}
+            </ol>
+            <p class="etp-peak-note">Figures are calculated by the workbook. Illustrative data.</p>
+          </div>
+          <div class="etp-peak-visual">
+            {panels.map((p, i) => (
+              <figure class="etp-panel etp-dark-chart" data-for={i}>
+                <figcaption><span>{p.tag}</span><b>{p.title}</b></figcaption>
+                <div class="etp-panel-body"><Fragment set:html={p.body} /></div>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="etp-process" id="how-it-works" data-sc-act="flow" aria-labelledby="process-title">
+      <div class="etp-container">
+        <div class="etp-section-head">
+          <h2 id="process-title">How it works</h2>
+          <p>Four steps, recalculated whenever the scenario switch or an input changes.</p>
+        </div>
+        <div class="etp-rule" aria-hidden="true"><span data-sc-reveal="left" data-sc-reveal-at="0.22 0.62"></span></div>
+        <div class="etp-process-steps">
+          <article><span>01</span><h3>Set the drivers</h3><p>Each program has starting headcount, planned hires, cost per person, materials, tool builds and Capex by month. Boxed cells on the Inputs tab are the only numbers typed in, besides the AOP and the actuals.</p></article>
+          <article><span>02</span><h3>Build the forecast</h3><p>Headcount cost is FTE × loaded cost ÷ 12, and the other lines are scaled by the scenario levers. Closed months use booked actuals. Open months use the forecast, which is why it is called a rolling forecast.</p></article>
+          <article><span>03</span><h3>Compare with the plan</h3><p>Variance is AOP minus forecast, so a positive number is favorable. A bridge walks from the AOP to the forecast by line, and lines above $250K and 5 percent are flagged for review.</p></article>
+          <article><span>04</span><h3>Follow the Capex</h3><p>Capex starts depreciating after a build-and-qualify delay and is spread evenly over its useful life, which shows the future yearly cost that this year’s spending creates.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="etp-tabs" data-sc-act="pan" data-sc-span="2.8" aria-labelledby="tabs-title">
+      <div class="etp-tabs-stage" data-sc-stage>
+        <div class="etp-rail" data-sc-pan="0">
+          <div class="etp-rail-head">
+            <p class="etp-eyebrow">( THE WORKBOOK )</p>
+            <h2 id="tabs-title">Six tabs, one job each</h2>
+            <p>Each tab does one job: inputs, results, calculations, what-if or data. Inside a tab, sections are stacked on the same month columns, so the AOP, actuals and forecast can be compared in one scroll.</p>
+          </div>
+          {tabs.map((tab) => (
+            <article class="etp-tab">
+              <span class="etp-tab-role">{tab.role}</span>
+              <h3>{tab.name}</h3>
+              <p>{tab.use}</p>
+            </article>
+          ))}
+          <div class="etp-rail-end">
+            <p>Every number is a formula, except the boxed inputs, the typed AOP and actuals, and one labeled snapshot.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="etp-compare etp-scn" aria-labelledby="compare-title">
+      <div class="etp-container">
+        <h2 id="compare-title">Test a scenario</h2>
+        <p class="etp-compare-lede">One switch changes the whole model. These three views are the workbook’s own results with three months closed.</p>
+        {scnViews.map((v, i) => <input class="etp-radio" type="radio" name="scn" id={`scn-${v.id}`} checked={i === 0} />)}
+        <div class="etp-chips" role="radiogroup" aria-label="Scenario">
+          {scnViews.map((v) => <label for={`scn-${v.id}`}>{v.name}</label>)}
+        </div>
+        {scnViews.map((v) => (
+          <div class={`etp-scn-view view-${v.id}`}>
+            <div class="etp-compare-grid">
+              <div class="etp-compare-copy">
+                <p class="etp-lever">{v.levers}</p>
+                <dl class="etp-compare-facts">
+                  <div><dt>FY27 forecast</dt><dd>{M2(v.sc.fc)}</dd></div>
+                  <div><dt>Variance to AOP</dt><dd>{M2(Math.abs(v.sc.var))} {v.sc.var >= 0 ? 'favorable' : 'unfavorable'} <span>{P1(v.sc.pct)}</span></dd></div>
+                  <div><dt>Opex · Capex</dt><dd>{M2(v.sc.opex)} · {M2(v.sc.capex)}</dd></div>
+                  <div><dt>Q2 spend (Feb to Apr)</dt><dd>{M2(v.sc.quarters[1].fc)} <span>AOP {M2(v.sc.quarters[1].aop)}</span></dd></div>
+                  <div><dt>FY27 depreciation</dt><dd>{M2(v.sc.dep)} <span>{M2(v.sc.runrate)} a year</span></dd></div>
+                  <div><dt>Ending FTE</dt><dd>{v.sc.fte}</dd></div>
+                </dl>
+                <p class="etp-small">{v.sc.overall}: all 11 model checks pass in this scenario.</p>
+              </div>
+              <div class="etp-compare-visual etp-light-chart">
+                <div class="etp-card"><p class="etp-card-title">Total spend by month</p><Fragment set:html={lineChart(v.sc, `Monthly total spend, AOP versus forecast of record, ${v.name} scenario.`)} /></div>
+                <div class="etp-card"><p class="etp-card-title">AOP to forecast bridge</p><Fragment set:html={waterfall(v.sc, `Bridge from the AOP to the ${v.name} forecast by line.`)} /></div>
+              </div>
+            </div>
+          </div>
+        ))}
+        <p class="etp-caption">The slip looks favorable, but the work still happens, so next year’s budget has to absorb it.</p>
+      </div>
+    </section>
+
+    <section class="etp-checked" aria-labelledby="checked-title">
+      <div class="etp-container etp-checked-grid">
+        <div>
+          <h2 id="checked-title">Built to be checked</h2>
+          <p class="etp-count"><span data-sc-count="0 11" data-sc-count-ms="1200">11</span></p>
+          <p class="etp-count-label">model checks on the Summary tab, all passing in every scenario.</p>
+        </div>
+        <ul class="etp-checks">
+          <li><h3>Self-checking</h3><p>Each check is a difference that should be zero: closed months equal actuals, the bridge adds up to the forecast, quarters add up to the year, and depreciation rolls forward.</p></li>
+          <li><h3>Catches mistakes</h3><p>If months closed is set above the three months of actuals typed in, the panel flags the months with no actuals instead of quietly understating spend.</p></li>
+          <li><h3>Tied to the earlier version</h3><p>After the workbook was restructured into six tabs, its values were compared with the earlier version. Everything matched except two labels changed on purpose.</p></li>
+          <li><h3>No formula errors</h3><p>The workbook was recalculated with an independent formula engine in all three scenarios, and with 0 and 12 months closed. It returned zero formula errors.</p></li>
+        </ul>
+        <div class="etp-stack"><span>PROJECT TOOLS</span><p>Excel · INDEX and MATCH · SUMPRODUCT · Python (openpyxl and matplotlib) for the build and the one-page summary</p></div>
+      </div>
+    </section>
+
+    <section class="etp-limits" data-sc-act="flow" aria-labelledby="limits-title">
+      <div class="etp-container etp-limits-grid">
+        <h2 id="limits-title">Accuracy &amp; limitations</h2>
+        <div class="etp-prose">
+          <p>Every number is an illustrative assumption informed by public industry context. None of it is Applied Materials data, and the project is not affiliated with or endorsed by Applied Materials.</p>
+          <p>The AOP is a typed budget, so it differs from the driver-based plan: {M1(base.aop)} against about {M1(data.sens.grid[0][0])}. The sensitivity grid is a plan view that ignores actuals.</p>
+          <p>A schedule slip is modeled as a pure shift of the plan. The first three open months pull from closed months, so they get no new materials, tool builds or Capex. A real slip would likely keep some spend.</p>
+          <p>Depreciation is a straight-line illustration, with a 5-year life and a 2-month start delay. It is a memo and is not in the Opex totals. Only November to January have actuals. The model leaves out accruals and open purchase orders, allocations of shared costs, contractors, travel, attrition and merit raises.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="etp-takeaway" id="about" aria-labelledby="takeaway-title">
+      <div class="etp-container">
+        <h2 id="takeaway-title">What the project demonstrates</h2>
+        <p>Turning an open budgeting question into a driver-based forecast: Opex and Capex by program, a rolling forecast that blends in actuals, a variance report with a bridge to the budget, scenario and sensitivity tests, Capex followed into depreciation, and a checks panel that makes every number traceable.</p>
+      </div>
+    </section>
+
+    <footer class="etp-footer">
+      <div class="etp-container">
+        <p class="etp-eyebrow etp-eyebrow-dark">( CONTINUE EXPLORING )</p>
+        <h2>Project links</h2>
+        <div class="etp-links">
+          <a class="etp-button" href={dceCase} target="_blank" rel="noopener noreferrer">Delivery Center Estimator case study <span aria-hidden="true">↗</span></a>
+          <a class="etp-secondary" href={fpaCase} target="_blank" rel="noopener noreferrer">Tesla FP&amp;A Agent case study <span aria-hidden="true">↗</span></a>
+          <a class="etp-secondary" href={home} target="_blank" rel="noopener noreferrer">Back to Jacob’s portfolio <span aria-hidden="true">↗</span></a>
+          <a class="etp-secondary" href="mailto:jkambour@gmail.com">Email Jacob <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <script>
+    import '../../vendor/scrollcraft/scrollcraft.js';
+    const peak = document.querySelector<HTMLElement>('.etp-peak');
+    const stage = peak?.querySelector<HTMLElement>('.etp-peak-stage');
+    const items = Array.from(peak?.querySelectorAll<HTMLElement>('.etp-steps li') ?? []);
+    const panels = Array.from(peak?.querySelectorAll<HTMLElement>('.etp-panel') ?? []);
+    const live = window.matchMedia('(min-width: 861px) and (min-height: 640px) and (prefers-reduced-motion: no-preference)');
+    // Step boundaries in act progress for six steps.
+    const bounds = [0, 0.14, 0.3, 0.46, 0.62, 0.78];
+    let frame = 0;
+    let visible = false;
+    let current = -1;
+    const render = () => {
+      frame = 0;
+      if (!peak || !stage || !peak.classList.contains('is-live')) return;
+      const p = parseFloat(peak.style.getPropertyValue('--sc-p')) || 0;
+      let step = 0;
+      bounds.forEach((b, i) => { if (p >= b) step = i; });
+      stage.style.setProperty('--etp-p', p.toFixed(4));
+      if (step !== current) {
+        current = step;
+        stage.dataset.step = String(step);
+        items.forEach((li, i) => li.classList.toggle('is-active', i === step));
+        panels.forEach((pn, i) => pn.classList.toggle('is-active', i === step));
+      }
+      stage.dataset.scVerifyState = `${step}|${p.toFixed(2)}`;
+      if (visible) frame = requestAnimationFrame(render);
+    };
+    // The layout is chosen once, before the engine collects acts. A static
+    // composition becomes a flow act so the engine never tries to pin it.
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const tabsSection = document.querySelector<HTMLElement>('.etp-tabs');
+    if (reduce.matches && tabsSection) tabsSection.setAttribute('data-sc-act', 'flow');
+    const startLive = live.matches;
+    const sync = () => {
+      if (!peak || !stage) return;
+      const on = startLive && live.matches;
+      peak.classList.toggle('is-live', on);
+      if (!on) {
+        stage.dataset.step = 'all';
+        stage.removeAttribute('data-sc-verify-state');
+        items.forEach((li) => li.classList.remove('is-active'));
+        panels.forEach((pn) => pn.classList.remove('is-active'));
+        current = -1;
+      } else if (current < 0) {
+        current = 0;
+        items[0]?.classList.add('is-active');
+        panels[0]?.classList.add('is-active');
+      }
+    };
+    if (peak && !startLive) peak.setAttribute('data-sc-act', 'flow');
+    sync();
+    const craft = (window as unknown as { ScrollCraft: { mount: (root: HTMLElement) => void } }).ScrollCraft;
+    const main = document.querySelector<HTMLElement>('main');
+    if (main && craft) craft.mount(main);
+    live.addEventListener('change', () => { sync(); window.dispatchEvent(new Event('resize')); });
+    if (peak && 'IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        visible = entries.some((entry) => entry.isIntersecting);
+        if (visible && !frame) frame = requestAnimationFrame(render);
+      }).observe(peak);
+    }
+  </script>
+</BaseLayout>

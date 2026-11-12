@@ -1,0 +1,1463 @@
+{
+ "scenarios": {
+  "base": {
+   "name": "Base",
+   "aop": 61965,
+   "fc": 60230.66666666666,
+   "var": 1734.333333333336,
+   "pct": 0.02798891847548351,
+   "opex": 49880.66666666666,
+   "capex": 10350,
+   "ytd": 895,
+   "fte": 113,
+   "dep": 929.1666666666667,
+   "runrate": 2070,
+   "aop_m": [
+    2846,
+    5644,
+    5179,
+    4694,
+    5582,
+    5146,
+    8212,
+    4175,
+    5835,
+    6476,
+    4738,
+    3438
+   ],
+   "fc_m": [
+    2848,
+    5146,
+    4780,
+    4520,
+    5560.8,
+    5124.2,
+    8007.5,
+    4070.8,
+    5811.7,
+    6353.3,
+    4594.2,
+    3414.2
+   ],
+   "af": [
+    "A",
+    "A",
+    "A",
+    "F",
+    "F",
+    "F",
+    "F",
+    "F",
+    "F",
+    "F",
+    "F",
+    "F"
+   ],
+   "prog_aop_m": [
+    [
+     1225,
+     4019,
+     1279,
+     1334,
+     3843,
+     1397,
+     3387,
+     1461,
+     3970,
+     2602,
+     1512,
+     1522
+    ],
+    [
+     726,
+     726,
+     753,
+     2408,
+     783,
+     2788,
+     815,
+     1699,
+     845,
+     2850,
+     877,
+     882
+    ],
+    [
+     895,
+     899,
+     3147,
+     952,
+     956,
+     961,
+     4010,
+     1015,
+     1020,
+     1024,
+     2349,
+     1034
+    ]
+   ],
+   "prog_fc_m": [
+    [
+     1227,
+     3520,
+     1281,
+     1323.3,
+     3833.3,
+     1386.7,
+     3196.7,
+     1450,
+     3960,
+     2491.7,
+     1501.7,
+     1511.7
+    ],
+    [
+     726,
+     726,
+     752,
+     2251.7,
+     777.5,
+     2782.5,
+     808.3,
+     1613.3,
+     839.2,
+     2844.2,
+     870,
+     875
+    ],
+    [
+     895,
+     900,
+     2747,
+     945,
+     950,
+     955,
+     4002.5,
+     1007.5,
+     1012.5,
+     1017.5,
+     2222.5,
+     1027.5
+    ]
+   ],
+   "capex_m": [
+    0,
+    2250,
+    1800,
+    1500,
+    0,
+    0,
+    1800,
+    800,
+    0,
+    1000,
+    1200,
+    0
+   ],
+   "dep_m": [
+    0,
+    0,
+    0,
+    37.5,
+    67.5,
+    92.5,
+    92.5,
+    92.5,
+    122.5,
+    135.83,
+    135.83,
+    152.5
+   ],
+   "acc_m": [
+    0,
+    0,
+    0,
+    37.5,
+    105,
+    197.5,
+    290,
+    382.5,
+    505,
+    640.8,
+    776.7,
+    929.2
+   ],
+   "nbv_m": [
+    0,
+    2250,
+    4050,
+    5512.5,
+    5445,
+    5352.5,
+    7060,
+    7767.5,
+    7645,
+    8509.2,
+    9573.3,
+    9420.8
+   ],
+   "bridge": [
+    {
+     "label": "AOP total spend",
+     "change": 61965,
+     "run": 61965,
+     "fu": null,
+     "review": null
+    },
+    {
+     "label": "Headcount cost",
+     "change": -935.3333333333358,
+     "run": 61029.66666666666,
+     "fu": "F",
+     "review": "Within"
+    },
+    {
+     "label": "Materials",
+     "change": 731,
+     "run": 61760.66666666666,
+     "fu": "U",
+     "review": "Review"
+    },
+    {
+     "label": "Prototype & eval tools",
+     "change": 0,
+     "run": 61760.66666666666,
+     "fu": "On plan",
+     "review": "Within"
+    },
+    {
+     "label": "Capex",
+     "change": -1530,
+     "run": 60230.66666666666,
+     "fu": "F",
+     "review": "Review"
+    },
+    {
+     "label": "FY27 forecast total spend",
+     "change": 60230.66666666666,
+     "run": 60230.66666666666,
+     "fu": null,
+     "review": null
+    }
+   ],
+   "quarters": [
+    {
+     "aop": 13669,
+     "fc": 12774
+    },
+    {
+     "aop": 15422,
+     "fc": 15205
+    },
+    {
+     "aop": 18222,
+     "fc": 17890
+    },
+    {
+     "aop": 14652,
+     "fc": 14361.66666666667
+    }
+   ],
+   "programs": [
+    {
+     "name": "Conductor Etch (GAA logic)",
+     "aop": 27551,
+     "fc": 26683,
+     "var": 867.9999999999964,
+     "pct": 0.03150520852237655,
+     "flag": "Within"
+    },
+    {
+     "name": "Selective Etch",
+     "aop": 16152,
+     "fc": 15865.66666666666,
+     "var": 286.3333333333358,
+     "pct": 0.01772742281657601,
+     "flag": "Within"
+    },
+    {
+     "name": "Dielectric HAR Etch (memory)",
+     "aop": 18262,
+     "fc": 17682,
+     "var": 580,
+     "pct": 0.03175993867046326,
+     "flag": "Within"
+    }
+   ],
+   "lines": [
+    {
+     "label": "Headcount cost",
+     "aop": 27867,
+     "fc": 26931.66666666666,
+     "var": 935.3333333333358,
+     "pct": 0.03356419181588745,
+     "fu": "F",
+     "ytd": 311,
+     "flag": "Within"
+    },
+    {
+     "label": "Materials",
+     "aop": 10218,
+     "fc": 10949,
+     "var": -731,
+     "pct": -0.07154041886866315,
+     "fu": "U",
+     "ytd": -316,
+     "flag": "Review"
+    },
+    {
+     "label": "Prototype & eval tools",
+     "aop": 12000,
+     "fc": 12000,
+     "var": 0,
+     "pct": 0,
+     "fu": "On plan",
+     "ytd": 0,
+     "flag": "Within"
+    },
+    {
+     "label": "Total Opex",
+     "aop": 50085,
+     "fc": 49880.66666666666,
+     "var": 204.3333333333358,
+     "pct": 0.004079731123756329,
+     "fu": "F",
+     "ytd": -5,
+     "flag": "Within"
+    },
+    {
+     "label": "Capex",
+     "aop": 11880,
+     "fc": 10350,
+     "var": 1530,
+     "pct": 0.1287878787878788,
+     "fu": "F",
+     "ytd": 900,
+     "flag": "Review"
+    },
+    {
+     "label": "Total spend",
+     "aop": 61965,
+     "fc": 60230.66666666666,
+     "var": 1734.333333333336,
+     "pct": 0.02798891847548351,
+     "fu": "F",
+     "ytd": 895,
+     "flag": "Within"
+    }
+   ],
+   "checks": [
+    {
+     "label": "Total spend = Opex + Capex (portfolio forecast)",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Portfolio total = sum of the three programs",
+     "diff": -7.275957614183426e-12,
+     "status": "OK"
+    },
+    {
+     "label": "Closed months in the forecast of record = actuals",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Open months in the forecast of record = scenario forecast",
+     "diff": -9.094947017729282e-13,
+     "status": "OK"
+    },
+    {
+     "label": "Bridge steps add up to the forecast",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Four quarters add up to the full year",
+     "diff": 7.275957614183426e-12,
+     "status": "OK"
+    },
+    {
+     "label": "Depreciation roll-forward: accumulated + net book value = Capex",
+     "diff": -1.818989403545856e-12,
+     "status": "OK"
+    },
+    {
+     "label": "Sensitivity grid at 0% cut and 0 slip = scenario forecast (Base only)",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Scenario name is valid (0 = valid)",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Months closed is a whole number from 0 to 12 (0 = valid)",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Every closed month has actuals typed in (months missing)",
+     "diff": 0,
+     "status": "OK"
+    }
+   ],
+   "overall": "ALL PASS"
+  },
+  "cut": {
+   "name": "Funding Cut",
+   "aop": 61965,
+   "fc": 53268.58333333334,
+   "var": 8696.416666666664,
+   "pct": 0.1403440114042873,
+   "opex": 44808.58333333334,
+   "capex": 8460,
+   "ytd": 895,
+   "fte": 106.5,
+   "dep": 823.6666666666667,
+   "runrate": 1692,
+   "aop_m": [
+    2846,
+    5644,
+    5179,
+    4694,
+    5582,
+    5146,
+    8212,
+    4175,
+    5835,
+    6476,
+    4738,
+    3438
+   ],
+   "fc_m": [
+    2848,
+    5146,
+    4780,
+    3921.6,
+    4774,
+    4437.7,
+    6496.3,
+    3585,
+    4927.4,
+    5280.2,
+    3947.7,
+    3124.7
+   ],
+   "af": [
+    "A",
+    "A",
+    "A",
+    "F",
+    "F",
+    "F",
+    "F",
+    "F",
+    "F",
+    "F",
+    "F",
+    "F"
+   ],
+   "prog_aop_m": [
+    [
+     1225,
+     4019,
+     1279,
+     1334,
+     3843,
+     1397,
+     3387,
+     1461,
+     3970,
+     2602,
+     1512,
+     1522
+    ],
+    [
+     726,
+     726,
+     753,
+     2408,
+     783,
+     2788,
+     815,
+     1699,
+     845,
+     2850,
+     877,
+     882
+    ],
+    [
+     895,
+     899,
+     3147,
+     952,
+     956,
+     961,
+     4010,
+     1015,
+     1020,
+     1024,
+     2349,
+     1034
+    ]
+   ],
+   "prog_fc_m": [
+    [
+     1227,
+     3520,
+     1281,
+     1246.2,
+     3129.7,
+     1284.8,
+     2553.3,
+     1323.5,
+     3207,
+     2051.3,
+     1359.8,
+     1368.3
+    ],
+    [
+     726,
+     726,
+     752,
+     1770.2,
+     734.8,
+     2239.1,
+     753.8,
+     1318,
+     772.7,
+     2276.9,
+     791.6,
+     795.8
+    ],
+    [
+     895,
+     900,
+     2747,
+     905.2,
+     909.5,
+     913.8,
+     3189.2,
+     943.5,
+     947.8,
+     952,
+     1796.2,
+     960.5
+    ]
+   ],
+   "capex_m": [
+    0,
+    2250,
+    1800,
+    1050,
+    0,
+    0,
+    1260,
+    560,
+    0,
+    700,
+    840,
+    0
+   ],
+   "dep_m": [
+    0,
+    0,
+    0,
+    37.5,
+    67.5,
+    85,
+    85,
+    85,
+    106,
+    115.33,
+    115.33,
+    127
+   ],
+   "acc_m": [
+    0,
+    0,
+    0,
+    37.5,
+    105,
+    190,
+    275,
+    360,
+    466,
+    581.3,
+    696.7,
+    823.7
+   ],
+   "nbv_m": [
+    0,
+    2250,
+    4050,
+    5062.5,
+    4995,
+    4910,
+    6085,
+    6560,
+    6454,
+    7038.7,
+    7763.3,
+    7636.3
+   ],
+   "bridge": [
+    {
+     "label": "AOP total spend",
+     "change": 61965,
+     "run": 61965,
+     "fu": null,
+     "review": null
+    },
+    {
+     "label": "Headcount cost",
+     "change": -1758.666666666664,
+     "run": 60206.33333333334,
+     "fu": "F",
+     "review": "Review"
+    },
+    {
+     "label": "Materials",
+     "change": -517.75,
+     "run": 59688.58333333334,
+     "fu": "F",
+     "review": "Review"
+    },
+    {
+     "label": "Prototype & eval tools",
+     "change": -3000,
+     "run": 56688.58333333334,
+     "fu": "F",
+     "review": "Review"
+    },
+    {
+     "label": "Capex",
+     "change": -3420,
+     "run": 53268.58333333334,
+     "fu": "F",
+     "review": "Review"
+    },
+    {
+     "label": "FY27 forecast total spend",
+     "change": 53268.58333333334,
+     "run": 53268.58333333334,
+     "fu": null,
+     "review": null
+    }
+   ],
+   "quarters": [
+    {
+     "aop": 13669,
+     "fc": 12774
+    },
+    {
+     "aop": 15422,
+     "fc": 13133.25
+    },
+    {
+     "aop": 18222,
+     "fc": 15008.75
+    },
+    {
+     "aop": 14652,
+     "fc": 12352.58333333334
+    }
+   ],
+   "programs": [
+    {
+     "name": "Conductor Etch (GAA logic)",
+     "aop": 27551,
+     "fc": 23552,
+     "var": 3999.000000000004,
+     "pct": 0.1451489964066641,
+     "flag": "Review"
+    },
+    {
+     "name": "Selective Etch",
+     "aop": 16152,
+     "fc": 13656.83333333333,
+     "var": 2495.166666666666,
+     "pct": 0.1544803533102195,
+     "flag": "Review"
+    },
+    {
+     "name": "Dielectric HAR Etch (memory)",
+     "aop": 18262,
+     "fc": 16059.75,
+     "var": 2202.25,
+     "pct": 0.1205919395465995,
+     "flag": "Review"
+    }
+   ],
+   "lines": [
+    {
+     "label": "Headcount cost",
+     "aop": 27867,
+     "fc": 26108.33333333334,
+     "var": 1758.666666666664,
+     "pct": 0.06310929295104117,
+     "fu": "F",
+     "ytd": 311,
+     "flag": "Review"
+    },
+    {
+     "label": "Materials",
+     "aop": 10218,
+     "fc": 9700.25,
+     "var": 517.75,
+     "pct": 0.05067038559404972,
+     "fu": "F",
+     "ytd": -316,
+     "flag": "Review"
+    },
+    {
+     "label": "Prototype & eval tools",
+     "aop": 12000,
+     "fc": 9000,
+     "var": 3000,
+     "pct": 0.25,
+     "fu": "F",
+     "ytd": 0,
+     "flag": "Review"
+    },
+    {
+     "label": "Total Opex",
+     "aop": 50085,
+     "fc": 44808.58333333334,
+     "var": 5276.416666666664,
+     "pct": 0.1053492396259691,
+     "fu": "F",
+     "ytd": -5,
+     "flag": "Review"
+    },
+    {
+     "label": "Capex",
+     "aop": 11880,
+     "fc": 8460,
+     "var": 3420,
+     "pct": 0.2878787878787879,
+     "fu": "F",
+     "ytd": 900,
+     "flag": "Review"
+    },
+    {
+     "label": "Total spend",
+     "aop": 61965,
+     "fc": 53268.58333333334,
+     "var": 8696.416666666664,
+     "pct": 0.1403440114042873,
+     "fu": "F",
+     "ytd": 895,
+     "flag": "Review"
+    }
+   ],
+   "checks": [
+    {
+     "label": "Total spend = Opex + Capex (portfolio forecast)",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Portfolio total = sum of the three programs",
+     "diff": 7.275957614183426e-12,
+     "status": "OK"
+    },
+    {
+     "label": "Closed months in the forecast of record = actuals",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Open months in the forecast of record = scenario forecast",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Bridge steps add up to the forecast",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Four quarters add up to the full year",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Depreciation roll-forward: accumulated + net book value = Capex",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Sensitivity grid at 0% cut and 0 slip = scenario forecast (Base only)",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Scenario name is valid (0 = valid)",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Months closed is a whole number from 0 to 12 (0 = valid)",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Every closed month has actuals typed in (months missing)",
+     "diff": 0,
+     "status": "OK"
+    }
+   ],
+   "overall": "ALL PASS"
+  },
+  "slip": {
+   "name": "Schedule Slip",
+   "aop": 61965,
+   "fc": 52264,
+   "var": 9701,
+   "pct": 0.156556120390543,
+   "opex": 44114,
+   "capex": 8150,
+   "ytd": 895,
+   "fte": 111,
+   "dep": 707.5,
+   "runrate": 1630,
+   "aop_m": [
+    2846,
+    5644,
+    5179,
+    4694,
+    5582,
+    5146,
+    8212,
+    4175,
+    5835,
+    6476,
+    4738,
+    3438
+   ],
+   "fc_m": [
+    2848,
+    5146,
+    4780,
+    2131.7,
+    2131.7,
+    2131.7,
+    4520,
+    5560.8,
+    5124.2,
+    8007.5,
+    4070.8,
+    5811.7
+   ],
+   "af": [
+    "A",
+    "A",
+    "A",
+    "F",
+    "F",
+    "F",
+    "F",
+    "F",
+    "F",
+    "F",
+    "F",
+    "F"
+   ],
+   "prog_aop_m": [
+    [
+     1225,
+     4019,
+     1279,
+     1334,
+     3843,
+     1397,
+     3387,
+     1461,
+     3970,
+     2602,
+     1512,
+     1522
+    ],
+    [
+     726,
+     726,
+     753,
+     2408,
+     783,
+     2788,
+     815,
+     1699,
+     845,
+     2850,
+     877,
+     882
+    ],
+    [
+     895,
+     899,
+     3147,
+     952,
+     956,
+     961,
+     4010,
+     1015,
+     1020,
+     1024,
+     2349,
+     1034
+    ]
+   ],
+   "prog_fc_m": [
+    [
+     1227,
+     3520,
+     1281,
+     910,
+     910,
+     910,
+     1323.3,
+     3833.3,
+     1386.7,
+     3196.7,
+     1450,
+     3960
+    ],
+    [
+     726,
+     726,
+     752,
+     541.7,
+     541.7,
+     541.7,
+     2251.7,
+     777.5,
+     2782.5,
+     808.3,
+     1613.3,
+     839.2
+    ],
+    [
+     895,
+     900,
+     2747,
+     680,
+     680,
+     680,
+     945,
+     950,
+     955,
+     4002.5,
+     1007.5,
+     1012.5
+    ]
+   ],
+   "capex_m": [
+    0,
+    2250,
+    1800,
+    0,
+    0,
+    0,
+    1500,
+    0,
+    0,
+    1800,
+    800,
+    0
+   ],
+   "dep_m": [
+    0,
+    0,
+    0,
+    37.5,
+    67.5,
+    67.5,
+    67.5,
+    67.5,
+    92.5,
+    92.5,
+    92.5,
+    122.5
+   ],
+   "acc_m": [
+    0,
+    0,
+    0,
+    37.5,
+    105,
+    172.5,
+    240,
+    307.5,
+    400,
+    492.5,
+    585,
+    707.5
+   ],
+   "nbv_m": [
+    0,
+    2250,
+    4050,
+    4012.5,
+    3945,
+    3877.5,
+    5310,
+    5242.5,
+    5150,
+    6857.5,
+    7565,
+    7442.5
+   ],
+   "bridge": [
+    {
+     "label": "AOP total spend",
+     "change": 61965,
+     "run": 61965,
+     "fu": null,
+     "review": null
+    },
+    {
+     "label": "Headcount cost",
+     "change": -1747,
+     "run": 60218,
+     "fu": "F",
+     "review": "Review"
+    },
+    {
+     "label": "Materials",
+     "change": -2224,
+     "run": 57994,
+     "fu": "F",
+     "review": "Review"
+    },
+    {
+     "label": "Prototype & eval tools",
+     "change": -2000,
+     "run": 55994,
+     "fu": "F",
+     "review": "Review"
+    },
+    {
+     "label": "Capex",
+     "change": -3730,
+     "run": 52264,
+     "fu": "F",
+     "review": "Review"
+    },
+    {
+     "label": "FY27 forecast total spend",
+     "change": 52264,
+     "run": 52264,
+     "fu": null,
+     "review": null
+    }
+   ],
+   "quarters": [
+    {
+     "aop": 13669,
+     "fc": 12774
+    },
+    {
+     "aop": 15422,
+     "fc": 6395
+    },
+    {
+     "aop": 18222,
+     "fc": 15205
+    },
+    {
+     "aop": 14652,
+     "fc": 17890
+    }
+   ],
+   "programs": [
+    {
+     "name": "Conductor Etch (GAA logic)",
+     "aop": 27551,
+     "fc": 23908,
+     "var": 3643,
+     "pct": 0.1322275053537077,
+     "flag": "Review"
+    },
+    {
+     "name": "Selective Etch",
+     "aop": 16152,
+     "fc": 12901.5,
+     "var": 3250.5,
+     "pct": 0.2012444279346211,
+     "flag": "Review"
+    },
+    {
+     "name": "Dielectric HAR Etch (memory)",
+     "aop": 18262,
+     "fc": 15454.5,
+     "var": 2807.5,
+     "pct": 0.1537345307195269,
+     "flag": "Review"
+    }
+   ],
+   "lines": [
+    {
+     "label": "Headcount cost",
+     "aop": 27867,
+     "fc": 26120,
+     "var": 1747,
+     "pct": 0.06269063767179818,
+     "fu": "F",
+     "ytd": 311,
+     "flag": "Review"
+    },
+    {
+     "label": "Materials",
+     "aop": 10218,
+     "fc": 7994,
+     "var": 2224,
+     "pct": 0.2176551184184772,
+     "fu": "F",
+     "ytd": -316,
+     "flag": "Review"
+    },
+    {
+     "label": "Prototype & eval tools",
+     "aop": 12000,
+     "fc": 10000,
+     "var": 2000,
+     "pct": 0.1666666666666667,
+     "fu": "F",
+     "ytd": 0,
+     "flag": "Review"
+    },
+    {
+     "label": "Total Opex",
+     "aop": 50085,
+     "fc": 44114,
+     "var": 5971,
+     "pct": 0.1192173305380853,
+     "fu": "F",
+     "ytd": -5,
+     "flag": "Review"
+    },
+    {
+     "label": "Capex",
+     "aop": 11880,
+     "fc": 8150,
+     "var": 3730,
+     "pct": 0.313973063973064,
+     "fu": "F",
+     "ytd": 900,
+     "flag": "Review"
+    },
+    {
+     "label": "Total spend",
+     "aop": 61965,
+     "fc": 52264,
+     "var": 9701,
+     "pct": 0.156556120390543,
+     "fu": "F",
+     "ytd": 895,
+     "flag": "Review"
+    }
+   ],
+   "checks": [
+    {
+     "label": "Total spend = Opex + Capex (portfolio forecast)",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Portfolio total = sum of the three programs",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Closed months in the forecast of record = actuals",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Open months in the forecast of record = scenario forecast",
+     "diff": -9.094947017729282e-13,
+     "status": "OK"
+    },
+    {
+     "label": "Bridge steps add up to the forecast",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Four quarters add up to the full year",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Depreciation roll-forward: accumulated + net book value = Capex",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Sensitivity grid at 0% cut and 0 slip = scenario forecast (Base only)",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Scenario name is valid (0 = valid)",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Months closed is a whole number from 0 to 12 (0 = valid)",
+     "diff": 0,
+     "status": "OK"
+    },
+    {
+     "label": "Every closed month has actuals typed in (months missing)",
+     "diff": 0,
+     "status": "OK"
+    }
+   ],
+   "overall": "ALL PASS"
+  }
+ },
+ "months": [
+  "Nov-26",
+  "Dec-26",
+  "Jan-27",
+  "Feb-27",
+  "Mar-27",
+  "Apr-27",
+  "May-27",
+  "Jun-27",
+  "Jul-27",
+  "Aug-27",
+  "Sep-27",
+  "Oct-27"
+ ],
+ "sens": {
+  "slips": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   6
+  ],
+  "cuts": [
+   0,
+   0.05,
+   0.1,
+   0.15,
+   0.2,
+   0.3
+  ],
+  "grid": [
+   [
+    60612,
+    59222,
+    56653,
+    52325,
+    48538,
+    40510
+   ],
+   [
+    58934,
+    57595,
+    55135,
+    51005,
+    47391,
+    39734
+   ],
+   [
+    57256,
+    55968,
+    53617,
+    49685,
+    46243,
+    38958
+   ],
+   [
+    55578,
+    54340,
+    52099,
+    48365,
+    45095,
+    38181
+   ],
+   [
+    53901,
+    52712,
+    50580,
+    47045,
+    43947,
+    37405
+   ],
+   [
+    50545,
+    49458,
+    47544,
+    44405,
+    41652,
+    35852
+   ]
+  ]
+ },
+ "levers": [
+  [
+   "Hiring plan achieved (%)",
+   1,
+   0.5,
+   1,
+   1
+  ],
+  [
+   "Materials cut (%)",
+   0,
+   0.15,
+   0,
+   0
+  ],
+  [
+   "Prototype / eval tool cut (%)",
+   0,
+   0.25,
+   0,
+   0
+  ],
+  [
+   "Capex cut (%)",
+   0,
+   0.3,
+   0,
+   0
+  ],
+  [
+   "Schedule slip (months)",
+   0,
+   0,
+   3,
+   0
+  ]
+ ],
+ "programs_in": [
+  [
+   "Conductor Etch (GAA logic)",
+   40,
+   260,
+   2500,
+   5,
+   2
+  ],
+  [
+   "Selective Etch",
+   25,
+   250,
+   2000,
+   5,
+   2
+  ],
+  [
+   "Dielectric HAR Etch (memory)",
+   30,
+   255,
+   3000,
+   5,
+   2
+  ]
+ ],
+ "aop_lines": [
+  [
+   "Headcount cost",
+   893,
+   937,
+   937,
+   982,
+   982,
+   1027,
+   1027,
+   1071,
+   1071,
+   1094,
+   1094,
+   1094
+  ],
+  [
+   "Materials",
+   332,
+   332,
+   342,
+   352,
+   361,
+   370,
+   380,
+   390,
+   399,
+   408,
+   418,
+   428
+  ],
+  [
+   "Prototype & eval tools",
+   0,
+   0,
+   0,
+   0,
+   2500,
+   0,
+   0,
+   0,
+   2500,
+   0,
+   0,
+   0
+  ],
+  [
+   "Total Opex",
+   1225,
+   1269,
+   1279,
+   1334,
+   3843,
+   1397,
+   1407,
+   1461,
+   3970,
+   1502,
+   1512,
+   1522
+  ],
+  [
+   "Capex",
+   0,
+   2750,
+   0,
+   0,
+   0,
+   0,
+   1980,
+   0,
+   0,
+   1100,
+   0,
+   0
+  ],
+  [
+   "Total spend",
+   1225,
+   4019,
+   1279,
+   1334,
+   3843,
+   1397,
+   3387,
+   1461,
+   3970,
+   2602,
+   1512,
+   1522
+  ]
+ ],
+ "closed": 3
+}
