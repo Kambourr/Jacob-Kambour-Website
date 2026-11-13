@@ -3,8 +3,8 @@
 - id: tesla-fpa-agent
   title: Tesla FP&A Agent
   tagline: >-
-    A tool that uses Tesla’s public filings to forecast past quarters and
-    explain the variances against reported results.
+    A tool that forecasts Tesla’s past 12 quarters from public filings, explains
+    each variance, and checks every figure it cites against the source.
   summary: >-
     A public-data finance workflow that turns Tesla filings into historical
     forecasts, variance analysis, and AI-written commentary, with code checking
@@ -40,8 +40,8 @@
 - id: etch-portfolio-forecast
   title: Etch Portfolio Spend Forecast
   tagline: >-
-    A tool that builds an Opex and Capex forecast for Etch R&D programs from
-    your inputs, bridges it to the budget, and exports Excel. Illustrative data.
+    A tool that turns your Etch program inputs into an Opex and Capex forecast,
+    a bridge to the budget, and an Excel export. Illustrative data.
   summary: >-
     An Excel model and a web app that forecast a fiscal year of Opex and Capex
     for Etch R&D programs. Enter programs, drivers, an AOP and actuals, and it

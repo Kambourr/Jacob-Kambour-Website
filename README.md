@@ -2,7 +2,7 @@
 
 **Live site: [kambourr.github.io/Jacob-Kambour-Website](https://kambourr.github.io/Jacob-Kambour-Website/)**
 
-Portfolio of Jacob Kambour, an MS Finance and Analytics student at Santa Clara University focused on FP&A and financial analysis. The homepage puts experience, education and projects on one screen; below it, a terminal-style chart shows the Q3 2026 revenue bridge from the Tesla FP&A Agent.
+Jacob Kambour, a current MS Finance and Analytics student at Santa Clara University focused on FP&A and financial analysis. The homepage puts experience, education and projects on one screen; below it, a terminal-style chart shows the Q3 2026 revenue bridge from the Tesla FP&A Agent.
 
 ## Pages
 
