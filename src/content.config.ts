@@ -81,6 +81,8 @@ const education = defineCollection({
 		school: z.string(),
 		credential: z.string(),
 		dates: z.string().optional(),
+		highlights: z.array(z.string()).optional(),
+		accent: z.string().optional(),
 		order: z.number(),
 	}),
 });

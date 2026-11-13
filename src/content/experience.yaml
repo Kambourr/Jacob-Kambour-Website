@@ -5,9 +5,9 @@
   org: Tesla
   title: Sales and Delivery Advisor
   bullets:
-    - Designed a multi-week foot-traffic study of a mall pop-up, built a data-collection app, and ran regression analyses and a Monte Carlo simulation in R and Python.
-    - Presented findings to Tesla store and regional management, who implemented three of the recommendations.
-    - Completed about 50 quarter-end deliveries totaling over $2 million in revenue, including financing and trade-ins.
+    - Closed about 50 quarter-end vehicle deliveries worth over $2 million, handling financing and trade-ins from paperwork to handover.
+    - Designed and ran a multi-week foot-traffic study of a mall pop-up, built the data-collection app, and ran regression analyses and a Monte Carlo simulation in R and Python.
+    - Presented the findings to Tesla store and regional management, who implemented three of the recommendations.
   order: 1
 - id: blendid
   org: Blendid
