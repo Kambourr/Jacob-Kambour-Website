@@ -5,7 +5,7 @@
   org: Tesla
   title: Sales and Delivery Advisor
   bullets:
-    - Ranked third among advisors in the entire region for Q3 deliveries, closing about 50 deliveries in two weeks totaling over $2 million in revenue, including financing and trade-ins.
+    - Ranked third among advisors in the entire region for Q3 deliveries, closing over $2 million in revenue in two weeks, including financing and trade-ins.
     - Named Supercharged Advisor of the Month for the Burlingame location.
     - Designed and ran a multi-week study of foot traffic, engagement and demo-drive conversion at a Tesla mall pop-up, built the data-collection app, and ran regression analyses and a Monte Carlo simulation in R and Python.
     - Presented the findings to Tesla store and regional management, who implemented three of the recommendations.
@@ -13,7 +13,6 @@
 - id: blendid
   org: Blendid
   title: Financial Analyst Intern
-  dates: Jun–Aug 2024
   bullets:
     - Analyzed multiple months of operating data in Excel and found about 3 hours of daily service downtime was costing an estimated $50–200 per robot per day in lost revenue; partnered cross-functionally with engineering on next-generation design changes for faster servicing.
     - Presented location-level operating cost reports (ingredient cost of sales, labor and service costs) to the C-suite of a 15-person robotics startup; co-managed 11 robots across 3 states.
